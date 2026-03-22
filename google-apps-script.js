@@ -54,6 +54,31 @@ function doPost(e) {
 
   sheet.appendRow(row);
 
+  // Potvrzovací e-mail účastníkovi
+  if (data.email) {
+    var subject = 'Děkujeme za přihlášku — TVŮJ ČLOVĚK 23. 4. 2026';
+    var body = 'Dobrý den, ' + (data.jmeno || '') + ',\n\n'
+      + 'děkujeme za Vaši přihlášku na akci TVŮJ ČLOVĚK, která se koná 23. dubna 2026 v Ostravě.\n\n'
+      + 'Vaše údaje:\n'
+      + '• Jméno: ' + (data.jmeno || '') + ' ' + (data.prijmeni || '') + '\n'
+      + '• Email: ' + (data.email || '') + '\n'
+      + '• Telefon: ' + (data.telefon || '') + '\n'
+      + '• Město: ' + (data.mesto || '') + '\n'
+      + '• Věk: ' + (data.vek || '') + '\n'
+      + '• Povolání: ' + (data.povolani || '') + '\n\n'
+      + 'Každý účastník prochází výběrem — záleží nám na složení skupiny. '
+      + 'Ozveme se Vám e-mailem s potvrzením účasti.\n\n'
+      + 'V případě dotazů nás neváhejte kontaktovat na jana@walance.cz.\n\n'
+      + 'Těšíme se na Vás!\n'
+      + 'Jana Štěpaníková\n'
+      + 'NetWalking Pro s.r.o.';
+
+    MailApp.sendEmail(data.email, subject, body, {
+      name: 'TVŮJ ČLOVĚK — Jana Štěpaníková',
+      replyTo: 'jana@walance.cz'
+    });
+  }
+
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok' }))
     .setMimeType(ContentService.MimeType.JSON);
