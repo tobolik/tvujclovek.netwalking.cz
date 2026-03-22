@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TVŮJ ČLOVĚK — 23. dubna 2026 | Ostrava</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2D5A27;
+    --green-light: #4A7C42;
+    --green-pale: #E8F0E6;
+    --cream: #FAF8F3;
+    --dark: #1A1A14;
+    --gold: #C4A35A;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--green);
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.05);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(64px, 12vw, 120px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    animation: fadeUp 0.8s ease 0.1s both;
+  }
+
+  .hero-title-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(64px, 12vw, 120px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    animation: fadeUp 0.8s ease 0.3s both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-meta-divider {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .hero-cta {
+    margin-top: 48px;
+    animation: fadeUp 0.8s ease 0.4s both;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    padding: 18px 48px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.15);
+    transition: left 0.3s ease;
+  }
+
+  .btn-primary:hover::before { left: 0; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(196,163,90,0.4); }
+
+  .hero-scroll {
+    text-align: center;
+    padding: 32px;
+    color: rgba(255,255,255,0.3);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: fadeUp 0.8s ease 0.6s both;
+  }
+
+  /* INTRO */
+  .intro {
+    padding: 100px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .intro-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    line-height: 1.5;
+    color: var(--dark);
+    font-weight: 400;
+  }
+
+  .intro-text em {
+    font-style: italic;
+    color: var(--green);
+  }
+
+  .intro-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 48px auto;
+  }
+
+  .intro-desc {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #555;
+    font-weight: 300;
+  }
+
+  /* WHAT */
+  .what {
+    background: var(--dark);
+    padding: 100px 24px;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 48px;
+    display: block;
+  }
+
+  .what-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .what-item {
+    background: rgba(255,255,255,0.03);
+    padding: 48px 40px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s ease;
+  }
+
+  .what-item:hover {
+    background: rgba(45,90,39,0.2);
+    border-color: rgba(45,90,39,0.4);
+  }
+
+  .what-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: rgba(255,255,255,0.08);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .what-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .what-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  /* DEEP TALK */
+  .deeptalk {
+    padding: 100px 24px;
+    background: var(--green-pale);
+  }
+
+  .deeptalk-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .deeptalk-tag {
+    display: inline-block;
+    background: var(--green);
+    color: var(--white);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    margin-bottom: 24px;
+  }
+
+  .deeptalk-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--dark);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    font-weight: 900;
+  }
+
+  .deeptalk-desc {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  .deeptalk-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .deeptalk-points li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.6;
+  }
+
+  .deeptalk-points li::before {
+    content: '→';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .deeptalk-visual {
+    background: var(--green);
+    padding: 60px 48px;
+    position: relative;
+  }
+
+  .deeptalk-visual::before {
+    content: '"';
+    position: absolute;
+    top: 20px;
+    left: 32px;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: rgba(255,255,255,0.1);
+    line-height: 1;
+  }
+
+  .deeptalk-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--white);
+    line-height: 1.6;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* PROGRAM */
+  .program {
+    padding: 100px 24px;
+    background: var(--cream);
+  }
+
+  .program-header {
+    max-width: 1100px;
+    margin: 0 auto 64px;
+  }
+
+  .program-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--dark);
+    font-weight: 900;
+  }
+
+  .program-timeline {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .program-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 40px;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    align-items: start;
+  }
+
+  .program-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--green);
+    font-weight: 700;
+    padding-top: 4px;
+  }
+
+  .program-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .program-detail {
+    font-size: 14px;
+    color: #888;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* PEOPLE */
+  .people {
+    padding: 100px 24px;
+    background: var(--dark);
+  }
+
+  .people-header {
+    max-width: 1100px;
+    margin: 0 auto 64px;
+  }
+
+  .people-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    color: var(--white);
+    font-weight: 900;
+  }
+
+  .people-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+  }
+
+  .person-card {
+    background: rgba(255,255,255,0.03);
+    padding: 48px 40px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .person-role {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .person-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .person-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.45);
+    font-weight: 300;
+  }
+
+  /* TICKET */
+  .ticket {
+    padding: 100px 24px;
+    background: var(--green);
+    text-align: center;
+  }
+
+  .ticket-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .ticket-price {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(72px, 15vw, 140px);
+    color: var(--white);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -4px;
+  }
+
+  .ticket-currency {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 60px);
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .ticket-note {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin: 16px 0 48px;
+    font-weight: 300;
+  }
+
+  .ticket-includes {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 64px;
+  }
+
+  .ticket-include {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ticket-include::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .ticket-capacity {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 24px;
+    font-weight: 300;
+  }
+
+  /* VENUE */
+  .venue {
+    padding: 100px 24px;
+    background: var(--cream);
+  }
+
+  .venue-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .venue-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 500;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .venue-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 44px);
+    color: var(--dark);
+    font-weight: 900;
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+
+  .venue-address {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  .venue-address strong {
+    color: var(--dark);
+    font-weight: 500;
+    display: block;
+  }
+
+  .venue-map {
+    background: var(--green-pale);
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(45,90,39,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .venue-map-pin {
+    text-align: center;
+  }
+
+  .venue-map-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .venue-map-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  .venue-map-sub {
+    font-size: 13px;
+    color: #888;
+    margin-top: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    padding: 48px 24px;
+    text-align: center;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--white);
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .footer-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 24px auto;
+  }
+
+  .footer-contact {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-contact a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .deeptalk-inner,
+    .venue-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .program-item {
+      grid-template-columns: 80px 1fr;
+      gap: 16px;
+    }
+    .hero-meta { flex-direction: column; gap: 12px; }
+    .hero-meta-divider { display: none; }
+    .ticket-includes { flex-direction: column; align-items: center; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-label">Ostrava · 23. dubna 2026</p>
+    <h1 class="hero-title">TVŮJ</h1>
+    <h1 class="hero-title-sub">Člověk</h1>
+    <div class="hero-meta">
+      <span>17:00 – 21:00</span>
+      <span class="hero-meta-divider"></span>
+      <span>Restaurant Café Ostrava-Poruba</span>
+      <span class="hero-meta-divider"></span>
+      <span>Pro lidi 30+</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#registrace" class="btn-primary">Mám zájem &rarr;</a>
+    </div>
+  </div>
+  <div class="hero-scroll">↓ &nbsp; Více informací</div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <p class="intro-eyebrow">O čem to je</p>
+  <p class="intro-text">
+    Kdy jste naposledy poznali někoho, u koho jste si řekli — <em>tohohle člověka do svého života chci?</em>
+  </p>
+  <div class="intro-divider"></div>
+  <p class="intro-desc">
+    Ne kontakt. Ne konverzaci která vyšumí za týden. Ale člověka, s kým si sednete přirozeně — hodnotově, energeticky, životně.<br><br>
+    TVŮJ ČLOVĚK je promyšlený večerní formát pro lidi 30+. Ne klasická seznamka. Ne klasický networking. Večer, kde může vzniknout něco skutečného.
+  </p>
+</section>
+
+<!-- WHAT -->
+<section class="what">
+  <div class="section-inner">
+    <span class="section-label">Co vás čeká</span>
+    <div class="what-grid">
+      <div class="what-item">
+        <div class="what-number">01</div>
+        <div class="what-title">Deep Talk Workshop</div>
+        <p class="what-desc">Naučíte se komunikovat tak, aby vás lidé chtěli poslouchat a pamatovali si vás. Praktická cvičení, žádná teorie.</p>
+      </div>
+      <div class="what-item">
+        <div class="what-number">02</div>
+        <div class="what-title">Skutečné rozhovory</div>
+        <p class="what-desc">Čas na opravdové propojení — ne vizitky, ne small talk. Řízené i volné setkávání v prostředí které tomu dává smysl.</p>
+      </div>
+      <div class="what-item">
+        <div class="what-number">03</div>
+        <div class="what-title">Zajímaví hosté</div>
+        <p class="what-desc">Úspěšní podnikatelé, odborníci, zajímaví lidé. Každý účastník prochází výběrem — záleží nám na složení skupiny.</p>
+      </div>
+      <div class="what-item">
+        <div class="what-number">04</div>
+        <div class="what-title">Catering & atmosféra</div>
+        <p class="what-desc">Raut, nápoje a prostředí které k večeru patří. Přijdete a budete se cítit dobře — od první minuty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP TALK -->
+<section class="deeptalk">
+  <div class="deeptalk-inner">
+    <div>
+      <span class="deeptalk-tag">Workshop večera</span>
+      <h2 class="deeptalk-title">Co je<br>Deep Talk?</h2>
+      <p class="deeptalk-desc">
+        Deep Talk je umění vést rozhovor, který druhého zaujme, zasáhne a zanechá stopu. Nejde o techniky. Jde o autentický kontakt.
+      </p>
+      <ul class="deeptalk-points">
+        <li>Jak se představit tak, aby si vás lidé zapamatovali</li>
+        <li>Jak klást otázky které otevírají, ne uzavírají</li>
+        <li>Jak naslouchat tak, aby druhý chtěl mluvit dál</li>
+        <li>Jak přirozeně navázat kontakt — bez trapnosti</li>
+      </ul>
+    </div>
+    <div class="deeptalk-visual">
+      <p class="deeptalk-quote">Dobré setkání není otázka náhody. Je otázka konceptu, atmosféry a správně uchopené chvíle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section class="program">
+  <div class="program-header">
+    <span class="section-label" style="color: var(--green);">Program večera</span>
+    <h2 class="program-title">Jak večer<br>proběhne</h2>
+  </div>
+  <div class="program-timeline">
+    <div class="program-item">
+      <div class="program-time">17:00</div>
+      <div>
+        <div class="program-name">Příchod & welcome</div>
+        <p class="program-detail">Registrace, welcome drink, catering, první setkávání</p>
+      </div>
+    </div>
+    <div class="program-item">
+      <div class="program-time">17:30</div>
+      <div>
+        <div class="program-name">Představení & kolo otázek</div>
+        <p class="program-detail">Každý má 90 vteřin — kdo jste, čím žijete, co hledáte</p>
+      </div>
+    </div>
+    <div class="program-item">
+      <div class="program-time">18:15</div>
+      <div>
+        <div class="program-name">Deep Talk Workshop</div>
+        <p class="program-detail">Praktická cvičení — umění kontaktu a komunikace která propojuje</p>
+      </div>
+    </div>
+    <div class="program-item">
+      <div class="program-time">19:00</div>
+      <div>
+        <div class="program-name">Volné setkávání</div>
+        <p class="program-detail">Catering, hudba, rozhovory — čas na propojení bez moderátora</p>
+      </div>
+    </div>
+    <div class="program-item">
+      <div class="program-time">20:30</div>
+      <div>
+        <div class="program-name">Závěr & společná fotka</div>
+        <p class="program-detail">Zpětná vazba, info o dalších akcích, rozloučení</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section class="people">
+  <div class="people-header">
+    <span class="section-label">Kdo za večerem stojí</span>
+    <h2 class="people-title">Váš večer<br>povedou</h2>
+  </div>
+  <div class="people-grid">
+    <div class="person-card">
+      <span class="person-role">Hostitelka & autorka konceptu</span>
+      <div class="person-name">Jana Štěpaníková</div>
+      <p class="person-desc">Fyzioterapeutka, koučka a mentorka. Autorka metody WALANCE. Organizuje a moderuje celý večer.</p>
+    </div>
+    <div class="person-card">
+      <span class="person-role">Partner & hostitel místa</span>
+      <div class="person-name">Jan Krkoška</div>
+      <p class="person-desc">Úspěšný podnikatel a ředitel Centra následné péče Ostrava. Otevírá večer a vítá hosty ve svých prostorách.</p>
+    </div>
+    <div class="person-card">
+      <span class="person-role">Host večera</span>
+      <div class="person-name">Jan Tobolík</div>
+      <p class="person-desc">Odborník na sítě, LinkedIn a byznysové propojení. Přináší pohled na to, proč ani technologie nestačí, hledáme-li skutečný kontakt.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TICKET -->
+<section class="ticket" id="registrace">
+  <span class="ticket-label">Vstupné</span>
+  <div class="ticket-price">1 700 <span class="ticket-currency">Kč</span></div>
+  <p class="ticket-note">Cena bez DPH · Platba po schválení přihlášky</p>
+  <div class="ticket-includes">
+    <span class="ticket-include">Workshop Deep Talk</span>
+    <span class="ticket-include">Raut & nápoje</span>
+    <span class="ticket-include">Kurátorovaná skupina</span>
+    <span class="ticket-include">Celý večerní program</span>
+  </div>
+  <a href="mailto:jana@walance.cz?subject=Mám zájem — TVŮJ ČLOVĚK 23.4." class="btn-primary" style="background: var(--white); color: var(--dark);">
+    Mám zájem &rarr;
+  </a>
+  <p class="ticket-capacity">Kapacita je omezena na 50 míst · Každý účastník prochází výběrem</p>
+</section>
+
+<!-- VENUE -->
+<section class="venue">
+  <div class="venue-inner">
+    <div>
+      <span class="venue-eyebrow">Místo konání</span>
+      <h2 class="venue-title">Restaurant Café<br>Ostrava-Poruba</h2>
+      <p class="venue-address">
+        <strong>Centrum následné péče Ostrava</strong>
+        Elzy Trioletové 2<br>
+        708 00 Ostrava-Poruba<br><br>
+        Parkování přímo před budovou.
+      </p>
+    </div>
+    <div class="venue-map">
+      <div class="venue-map-pin">
+        <span class="venue-map-icon">📍</span>
+        <div class="venue-map-text">Restaurant Café Poruba</div>
+        <div class="venue-map-sub">Elzy Trioletové 2, Ostrava-Poruba</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">TVŮJ ČLOVĚK</div>
+  <div class="footer-sub">Jana Štěpaníková · NetWalking Pro s.r.o.</div>
+  <div class="footer-divider"></div>
+  <div class="footer-contact">
+    Dotazy a přihlášky: <a href="mailto:jana@walance.cz">jana@walance.cz</a>
+  </div>
+</footer>
+
+</body>
+</html>
