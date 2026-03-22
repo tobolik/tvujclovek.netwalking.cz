@@ -69,8 +69,9 @@ function doPost(e) {
       + 'Každý účastník prochází výběrem — záleží nám na složení skupiny. '
       + 'Ozveme se Vám e-mailem s potvrzením účasti.\n\n'
       + 'V případě dotazů nás neváhejte kontaktovat na jana@walance.cz.\n\n'
-      + 'Těšíme se na Vás!\n'
+      + 'Těšíme se na Vás!\n\n'
       + 'Jana Štěpaníková\n'
+      + 'Tel: +420 601 584 901\n'
       + 'NetWalking Pro s.r.o.';
 
     MailApp.sendEmail(data.email, subject, body, {
