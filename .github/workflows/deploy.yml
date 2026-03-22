@@ -1,11 +1,11 @@
-name: Deploy to FTP
+name: Deploy
 
 on:
   push:
     branches: [main]
 
 jobs:
-  deploy:
+  deploy-ftp:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -13,12 +13,34 @@ jobs:
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Deploy via lftp
+      - name: Deploy to FTP
         run: |
           lftp -e "
             set ssl:verify-certificate no;
             set ftp:passive-mode yes;
             open ftp://${{ secrets.FTP_USER }}:${{ secrets.FTP_PASS }}@${{ secrets.FTP_HOST }};
-            mirror --reverse --delete --verbose --exclude .git/ --exclude .github/ . /;
+            mirror --reverse --delete --verbose --exclude .git/ --exclude .github/ --exclude apps-script/ --exclude google-apps-script.js --exclude .clasp.json . /;
             quit
           "
+
+  deploy-apps-script:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install clasp
+        run: npm install -g @google/clasp
+
+      - name: Auth clasp
+        run: echo '${{ secrets.CLASP_TOKEN }}' > ~/.clasprc.json
+
+      - name: Push Apps Script
+        run: clasp push
+
+      - name: Deploy Apps Script
+        run: clasp deploy -i AKfycbw8XvtUXAoIW8RllLEq1BiCRudpGE0OFEYB7qGVypmLimsfChQgiW2iWbYm5SQoOiCXGg -d "Auto-deploy $(date +%Y-%m-%d_%H:%M)"
