@@ -1022,6 +1022,28 @@
 </div>
 
 <script>
+// Persist form values in localStorage
+var form = document.getElementById('registration-form');
+var fields = ['jmeno','prijmeni','email','telefon','mesto','vek','pohlavi','povolani','cohleda','konicky','linkedin','instagram','dieta'];
+
+fields.forEach(function(name) {
+  var el = form.elements[name];
+  var saved = localStorage.getItem('form_' + name);
+  if (saved && el) el.value = saved;
+  if (el) el.addEventListener('input', function() {
+    localStorage.setItem('form_' + name, el.value);
+  });
+  if (el && el.tagName === 'SELECT') {
+    el.addEventListener('change', function() {
+      localStorage.setItem('form_' + name, el.value);
+    });
+  }
+});
+
+function clearFormStorage() {
+  fields.forEach(function(name) { localStorage.removeItem('form_' + name); });
+}
+
 function normalizeLinkedIn(val) {
   if (!val) return '';
   val = val.replace(/^https?:\/\//, '').replace(/^www\./, '');
@@ -1070,6 +1092,7 @@ document.getElementById('registration-form').addEventListener('submit', async fu
     msg.textContent = 'Děkujeme za přihlášku! Ozveme se vám e-mailem.';
     msg.className = 'form-message success';
     this.reset();
+    clearFormStorage();
   } catch (err) {
     msg.textContent = 'Omlouváme se, něco se pokazilo. Zkuste to znovu nebo nám napište na jana@walance.cz.';
     msg.className = 'form-message error';
