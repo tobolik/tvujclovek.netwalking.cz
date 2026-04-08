@@ -76,7 +76,8 @@ function doPost(e) {
 
     MailApp.sendEmail(data.email, subject, body, {
       name: 'TVŮJ ČLOVĚK — Jana Štěpaníková',
-      replyTo: 'jana@walance.cz'
+      replyTo: 'jana@walance.cz',
+      bcc: 'jana.stepanikova@nwpro.cz'
     });
   }
 

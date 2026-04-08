@@ -3,677 +3,2270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TVŮJ ČLOVĚK — 23. dubna 2026 | Ostrava</title>
-<meta name="description" content="Kurátorovaný večer pro lidi 30+. Deep Talk workshop, skutečné rozhovory a propojení s lidmi, kteří stojí za to. 23. dubna 2026, Ostrava.">
-<meta property="og:title" content="TVŮJ ČLOVĚK — Večer, kde potkáte svého člověka">
-<meta property="og:description" content="Kurátorovaný networking pro 30+. Workshop, catering, vybraná společnost. 23. 4. 2026 Ostrava. Kapacita 50 míst.">
+<title>TVŮJ ČLOVĚK | 23. dubna 2026 | Ostrava</title>
+<meta name="description" content="Večer pro lidi 30+, kteří hledají skutečné propojení. Deep Talk workshop, vybraná společnost, raut. 23. dubna 2026, Ostrava.">
+<meta property="og:title" content="TVŮJ ČLOVĚK | Večer, kde potkáte svého člověka">
+<meta property="og:description" content="Pečlivě sestavený networking pro 30+. Workshop, catering, vybraná společnost. 23. 4. 2026 Ostrava. 50 míst.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tvujclovek.netwalking.cz">
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green: #046A38;
-    --green-light: #0D8A4F;
-    --green-pale: #E3F2E9;
-    --cream: #FAF8F3;
-    --dark: #1A1A14;
+    --navy: #16213E;
+    --navy-bright: #1A2A50;
+    --navy-pale: #E8EDF5;
+    --navy-dark: #0D1526;
+    --cream: #FDFBF7;
+    --cream-warm: #F5F0E6;
     --gold: #C4A35A;
+    --gold-light: #E8D5A0;
+    --dark: #1A1A14;
     --white: #FFFFFF;
-    --serif: 'Source Serif 4', serif;
-    --sans: 'DM Sans', sans-serif;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; font-size: 18px; }
 
   body {
     font-family: var(--sans);
     background: var(--cream);
     color: var(--dark);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== REVEAL ========== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+
+  .label {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 20px;
   }
 
   /* ========== HERO ========== */
   .hero {
-    min-height: 100vh;
-    background: var(--green);
-    display: grid;
-    grid-template-rows: 1fr auto;
+    min-height: min(100vh, 860px);
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 40%, var(--navy-bright) 100%);
     position: relative;
     overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -50%; right: -20%;
-    width: 700px; height: 700px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.08);
-    pointer-events: none;
-  }
-
-  .hero-content {
     display: flex;
     flex-direction: column;
+  }
+
+  .hero-circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(196,163,90,0.06);
+    pointer-events: none;
+  }
+  .hero-circle:nth-child(1) { width: 600px; height: 600px; top: -200px; right: -100px; }
+  .hero-circle:nth-child(2) { width: 400px; height: 400px; bottom: -100px; left: -60px; }
+  .hero-circle:nth-child(3) { width: 250px; height: 250px; top: 40%; right: 12%; border-color: rgba(196,163,90,0.08); }
+
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    z-index: 2;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .hero-nav-brand {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+
+  .hero-nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .hero-nav-links a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+  }
+
+  .hero-nav-links a:hover { color: var(--white); }
+
+  .hero-nav-cta {
+    border: 1px solid rgba(196,163,90,0.4) !important;
+    padding: 10px 24px !important;
+    color: var(--gold) !important;
+    font-weight: 500 !important;
+  }
+
+  .hero-nav-cta:hover {
+    background: var(--gold) !important;
+    color: var(--navy-dark) !important;
+  }
+
+  .hero-main {
+    flex: 1;
+    display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 80px 24px 40px;
-    position: relative;
+    padding: 40px 48px 20px;
     z-index: 2;
   }
 
-  .hero-label {
-    font-size: 11px; font-weight: 500;
-    letter-spacing: 4px; text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 32px;
-    animation: fadeUp 0.8s ease both;
+  .hero-content { max-width: 720px; }
+
+  .hero-eyebrow {
+    display: inline-block;
+    background: rgba(196,163,90,0.1);
+    padding: 10px 28px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 36px;
+    animation: fadeUp 0.7s ease 0.1s both;
   }
 
-  .hero-title {
+  .hero-headline {
     font-family: var(--serif);
-    font-size: clamp(64px, 12vw, 120px);
-    font-weight: 700; color: var(--white);
-    line-height: 0.9; letter-spacing: -2px;
-    margin-bottom: 8px;
-    animation: fadeUp 0.8s ease 0.1s both;
-  }
-
-  .hero-title-sub {
-    font-family: var(--serif);
-    font-size: clamp(64px, 12vw, 120px);
-    font-weight: 400; font-style: italic;
-    color: var(--gold);
-    line-height: 0.9; letter-spacing: -2px;
-    margin-bottom: 48px;
+    font-size: clamp(2.8rem, 7vw, 4.5rem);
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -1px;
     animation: fadeUp 0.8s ease 0.2s both;
   }
 
-  .hero-meta {
-    display: flex; gap: 32px;
-    align-items: center;
-    color: rgba(255,255,255,0.7);
-    font-size: 14px; font-weight: 300; letter-spacing: 1px;
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    max-width: 520px;
+    margin: 28px auto 0;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
     animation: fadeUp 0.8s ease 0.3s both;
-    flex-wrap: wrap; justify-content: center;
   }
 
-  .hero-meta-divider {
-    width: 4px; height: 4px;
-    background: var(--gold); border-radius: 50%;
-  }
-
-  .hero-cta {
-    margin-top: 48px;
+  .hero-ctas {
+    margin-top: 40px;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
     animation: fadeUp 0.8s ease 0.4s both;
   }
 
-  .hero-spots {
-    margin-top: 16px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.45);
-    animation: fadeUp 0.8s ease 0.5s both;
-  }
-
-  .btn-primary {
+  .btn-gold {
     display: inline-block;
-    background: var(--gold); color: var(--dark);
-    padding: 18px 48px;
-    font-family: var(--sans);
-    font-size: 14px; font-weight: 500;
-    letter-spacing: 2px; text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(196,163,90,0.4);
-  }
-
-  .hero-scroll {
-    text-align: center; padding: 32px;
-    color: rgba(255,255,255,0.3);
-    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-  }
-
-  /* ========== INTRO ========== */
-  .intro {
-    padding: 100px 24px;
-    max-width: 800px; margin: 0 auto;
-    text-align: center;
-  }
-
-  .eyebrow {
-    font-size: 11px; letter-spacing: 4px;
-    text-transform: uppercase; font-weight: 500;
-    margin-bottom: 24px;
-  }
-
-  .intro-text {
-    font-family: var(--serif);
-    font-size: clamp(24px, 4vw, 36px);
-    line-height: 1.5; font-weight: 400;
-  }
-
-  .intro-text em { font-style: italic; color: var(--green); }
-
-  .divider {
-    width: 60px; height: 2px;
     background: var(--gold);
-    margin: 48px auto;
+    color: var(--navy-dark);
+    padding: 16px 44px;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+    border: none;
+    cursor: pointer;
   }
 
-  .intro-desc {
-    font-size: 17px; line-height: 1.8;
-    color: #555; font-weight: 300;
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(196,163,90,0.35);
   }
 
-  /* ========== GRID SECTIONS ========== */
-  .section-inner {
-    max-width: 1100px; margin: 0 auto;
+  .btn-ghost {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+    padding: 16px 44px;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
   }
 
-  .section-label {
-    font-size: 11px; letter-spacing: 4px;
-    text-transform: uppercase; font-weight: 500;
-    margin-bottom: 48px; display: block;
+  .btn-ghost:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.4);
   }
 
-  /* ========== CO VÁS ČEKÁ ========== */
-  .what {
-    background: var(--dark);
-    padding: 100px 24px;
+  .hero-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    padding: 24px 48px 32px;
+    z-index: 2;
+    animation: fadeUp 0.6s ease 0.5s both;
   }
 
-  .what-grid {
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-family: var(--serif); font-size: 2rem; color: var(--white); }
+  .hero-stat-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 4px; }
+  .hero-stat-div { width: 1px; height: 48px; background: rgba(255,255,255,0.08); align-self: center; }
+
+  /* ========== TRUST BAR ========== */
+  .trust {
+    background: var(--navy-dark);
+    padding: 18px 48px;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .trust span {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .trust span::before {
+    content: '✓';
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* ========== JANA -OSOBNÍ DOPIS ========== */
+  .letter {
+    padding: 120px 48px;
+    background: var(--cream);
+  }
+
+  .letter-inner {
+    max-width: 900px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2px;
+    grid-template-columns: auto 1fr;
+    gap: 48px;
+    align-items: start;
   }
 
-  .what-item {
-    background: rgba(255,255,255,0.03);
-    padding: 48px 40px;
-    border: 1px solid rgba(255,255,255,0.06);
-    transition: background 0.3s;
+  .letter-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--gold-light);
+    flex-shrink: 0;
   }
 
-  .what-item:hover {
-    background: rgba(4,106,56,0.15);
+  .letter-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
   }
 
-  .what-number {
+  .letter-body .label { color: var(--navy); }
+
+  .letter-quote {
     font-family: var(--serif);
-    font-size: 48px; color: rgba(255,255,255,0.08);
-    font-weight: 700; line-height: 1;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    line-height: 1.55;
+    color: var(--dark);
+    font-style: italic;
     margin-bottom: 24px;
   }
 
-  .what-title {
+  .letter-text {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #666;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .letter-sign {
     font-family: var(--serif);
-    font-size: 22px; color: var(--white);
-    margin-bottom: 16px; font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--navy);
+    font-style: italic;
   }
 
-  .what-desc {
-    font-size: 15px; line-height: 1.7;
-    color: rgba(255,255,255,0.5); font-weight: 300;
+  .letter-role {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 4px;
   }
 
-  /* ========== DEEP TALK ========== */
-  .deeptalk {
-    padding: 100px 24px;
-    background: var(--green-pale);
+  /* ========== FORMÁT VEČERA ========== */
+  .format {
+    padding: 100px 48px 120px;
+    background: var(--cream);
   }
 
-  .deeptalk-inner {
-    max-width: 1100px; margin: 0 auto;
+  .format-header {
+    max-width: 1200px;
+    margin: 0 auto 56px;
+  }
+
+  .format .label { color: var(--navy); }
+
+  .format-title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+  }
+
+  .format-cards {
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 
-  .deeptalk-tag {
-    display: inline-block;
-    background: var(--green); color: var(--white);
-    font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 8px 16px; margin-bottom: 24px;
+  .format-card {
+    padding: 48px 36px;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
   }
 
-  .deeptalk-title {
+  .format-card:hover { transform: translateY(-4px); }
+
+  .format-card--navy {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  .format-card--navy .format-card-num { color: rgba(255,255,255,0.08); }
+  .format-card--navy .format-card-desc { color: rgba(255,255,255,0.6); }
+
+  .format-card--gold {
+    background: var(--gold);
+    color: var(--dark);
+  }
+
+  .format-card--gold .format-card-num { color: rgba(0,0,0,0.06); }
+  .format-card--gold .format-card-desc { color: rgba(0,0,0,0.6); }
+
+  .format-card--pale {
+    background: var(--navy-pale);
+  }
+
+  .format-card--pale .format-card-num { color: rgba(22,33,62,0.08); }
+
+  .format-card-num {
     font-family: var(--serif);
-    font-size: clamp(36px, 5vw, 52px);
-    line-height: 1.1; margin-bottom: 24px; font-weight: 700;
+    font-size: 3.5rem;
+    color: rgba(0,0,0,0.05);
+    line-height: 1;
+    margin-bottom: 16px;
   }
 
-  .deeptalk-desc {
-    font-size: 16px; line-height: 1.8;
-    color: #555; font-weight: 300; margin-bottom: 32px;
-  }
-
-  .deeptalk-points {
-    list-style: none;
-    display: flex; flex-direction: column; gap: 16px;
-  }
-
-  .deeptalk-points li {
-    display: flex; gap: 16px; align-items: flex-start;
-    font-size: 15px; line-height: 1.6;
-  }
-
-  .deeptalk-points li::before {
-    content: '→'; color: var(--green);
-    font-weight: 700; flex-shrink: 0; margin-top: 2px;
-  }
-
-  .deeptalk-visual {
-    background: var(--green);
-    padding: 60px 48px;
-    position: relative;
-  }
-
-  .deeptalk-visual::before {
-    content: '\201C';
-    position: absolute; top: 20px; left: 32px;
+  .format-card-title {
     font-family: var(--serif);
-    font-size: 120px; color: rgba(255,255,255,0.1); line-height: 1;
+    font-size: 1.5rem;
+    margin-bottom: 12px;
   }
 
-  .deeptalk-quote {
-    font-family: var(--serif);
-    font-size: 22px; color: var(--white);
-    line-height: 1.6; font-style: italic;
-    position: relative; z-index: 1;
+  .format-card-desc {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #666;
+    font-weight: 300;
   }
 
   /* ========== PROGRAM ========== */
-  .program { padding: 100px 24px; }
+  .program {
+    padding: 120px 48px;
+    background: var(--white);
+  }
 
   .program-header {
-    max-width: 1100px; margin: 0 auto 64px;
+    max-width: 1200px;
+    margin: 0 auto 56px;
   }
+
+  .program .label { color: var(--navy); }
 
   .program-title {
     font-family: var(--serif);
-    font-size: clamp(36px, 5vw, 52px); font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
   }
 
-  .program-timeline {
-    max-width: 1100px; margin: 0 auto;
-  }
+  .program-timeline { max-width: 1200px; margin: 0 auto; }
 
   .program-item {
     display: grid;
     grid-template-columns: 120px 1fr;
-    gap: 40px; padding: 32px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    gap: 40px;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    transition: all 0.3s;
+  }
+
+  .program-item:hover {
+    padding-left: 12px;
+    border-bottom-color: var(--navy);
   }
 
   .program-time {
     font-family: var(--serif);
-    font-size: 18px; color: var(--green); font-weight: 700;
-    padding-top: 4px;
+    font-size: 1.4rem;
+    color: var(--navy);
   }
 
   .program-name {
-    font-size: 18px; font-weight: 500; margin-bottom: 6px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 6px;
   }
 
   .program-detail {
-    font-size: 14px; color: #888; font-weight: 300; line-height: 1.6;
+    font-size: 0.95rem;
+    color: #888;
+    font-weight: 300;
+    line-height: 1.7;
   }
 
   /* ========== LIDÉ ========== */
   .people {
-    padding: 100px 24px;
-    background: var(--dark);
+    padding: 120px 48px;
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .people::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.03);
   }
 
   .people-header {
-    max-width: 1100px; margin: 0 auto 64px;
+    max-width: 1200px;
+    margin: 0 auto 56px;
+    position: relative;
+    z-index: 1;
   }
+
+  .people .label { color: var(--gold-light); }
 
   .people-title {
     font-family: var(--serif);
-    font-size: clamp(36px, 5vw, 52px);
-    color: var(--white); font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    color: var(--white);
   }
 
   .people-grid {
-    max-width: 1100px; margin: 0 auto;
+    max-width: 1200px;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
+    z-index: 1;
   }
 
-  .person-card {
-    background: rgba(255,255,255,0.03);
-    padding: 48px 40px;
+  .person {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 48px 36px;
     border: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .person:hover {
+    background: rgba(255,255,255,0.09);
+    transform: translateY(-4px);
   }
 
   .person-avatar {
-    width: 120px; height: 120px;
-    border-radius: 50%; overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
     margin-bottom: 24px;
-    border: 2px solid rgba(196,163,90,0.3);
+    border: 3px solid rgba(196,163,90,0.2);
   }
 
   .person-avatar img {
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center 20%;
   }
 
   .person-role {
-    font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 16px; display: block;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    display: block;
   }
 
   .person-name {
     font-family: var(--serif);
-    font-size: 26px; color: var(--white);
-    font-weight: 700; margin-bottom: 16px;
+    font-size: 1.45rem;
+    color: var(--white);
+    margin-bottom: 16px;
   }
 
   .person-desc {
-    font-size: 14px; line-height: 1.7;
-    color: rgba(255,255,255,0.45); font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
   }
 
-  /* ========== SOCIAL PROOF ========== */
-  .proof { padding: 100px 24px; }
+  /* ========== OHLASY ========== */
+  .proof {
+    padding: 120px 48px;
+    background: var(--cream);
+  }
 
-  .proof-inner { max-width: 1100px; margin: 0 auto; }
+  .proof-inner { max-width: 1200px; margin: 0 auto; }
+  .proof .label { color: var(--navy); }
 
   .proof-title {
     font-family: var(--serif);
-    font-size: clamp(36px, 5vw, 52px);
-    font-weight: 700; margin-bottom: 64px;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    margin-bottom: 56px;
   }
 
   .proof-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 
   .proof-card {
     background: var(--white);
-    padding: 40px;
+    padding: 44px 36px;
     border: 1px solid rgba(0,0,0,0.06);
     position: relative;
+    transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .proof-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
   }
 
   .proof-card::before {
     content: '\201C';
     font-family: var(--serif);
-    font-size: 80px; color: var(--green-pale);
-    line-height: 1; position: absolute;
+    font-size: 80px;
+    color: var(--navy-pale);
+    line-height: 1;
+    position: absolute;
     top: 16px; left: 24px;
   }
 
   .proof-text {
     font-family: var(--serif);
-    font-size: 18px; line-height: 1.6;
-    font-style: italic; margin-bottom: 24px;
-    position: relative; z-index: 1;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
   }
 
-  .proof-author {
-    font-size: 13px; color: #888;
-  }
-
-  .proof-author strong {
-    color: var(--dark); display: block; margin-bottom: 2px;
-  }
+  .proof-author { font-size: 0.85rem; color: #888; }
+  .proof-author strong { color: var(--dark); display: block; margin-bottom: 2px; font-weight: 600; }
 
   /* ========== VSTUPNÉ ========== */
   .ticket {
-    padding: 100px 24px;
-    background: var(--green);
+    padding: 120px 48px;
+    background: var(--navy);
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
+
+  .ticket::before {
+    content: '';
+    position: absolute;
+    top: -300px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .ticket .label { color: rgba(255,255,255,0.4); }
 
   .ticket-price {
     font-family: var(--serif);
-    font-size: clamp(72px, 15vw, 140px);
-    color: var(--white); font-weight: 700;
-    line-height: 1; letter-spacing: -4px;
+    font-size: clamp(5rem, 15vw, 10rem);
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -4px;
+    position: relative;
+    z-index: 1;
   }
 
   .ticket-currency {
     font-family: var(--serif);
-    font-size: clamp(36px, 6vw, 60px);
-    color: var(--gold); font-weight: 400;
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: var(--gold-light);
   }
 
   .ticket-note {
-    font-size: 14px; color: rgba(255,255,255,0.5);
-    margin: 16px 0 16px; font-weight: 300;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.45);
+    margin: 16px 0;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
   }
 
   .ticket-context {
-    font-size: 15px; color: rgba(255,255,255,0.65);
-    max-width: 600px; margin: 0 auto 48px;
-    line-height: 1.7; font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 560px;
+    margin: 0 auto 48px;
+    line-height: 1.8;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
   }
 
   .ticket-includes {
-    display: flex; justify-content: center;
-    gap: 40px; flex-wrap: wrap;
-    margin-bottom: 64px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+    position: relative;
+    z-index: 1;
   }
 
   .ticket-include {
-    font-size: 13px; color: rgba(255,255,255,0.6);
-    display: flex; align-items: center; gap: 8px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
-  .ticket-include::before {
-    content: '✓'; color: var(--gold); font-weight: 700;
+  .ticket-include::before { content: '✓'; color: var(--gold-light); font-weight: 700; }
+
+  .btn-white {
+    display: inline-block;
+    background: var(--white);
+    color: var(--navy);
+    padding: 18px 52px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
   }
 
   .ticket-capacity {
-    font-size: 13px; color: rgba(255,255,255,0.4);
-    margin-top: 24px; font-weight: 300;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.3);
+    margin-top: 28px;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
   }
 
-  /* ========== FORMULÁŘ ========== */
-  .form-section { padding: 100px 24px; }
+  /* ========== FORMULÁŘ -3 KROKY ========== */
+  .form-section {
+    padding: 120px 48px;
+    background: var(--cream);
+  }
 
-  .form-inner { max-width: 700px; margin: 0 auto; }
+  .form-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .form-section .label { color: var(--navy); }
 
   .form-title {
     font-family: var(--serif);
-    font-size: clamp(36px, 5vw, 52px);
-    font-weight: 700; margin-bottom: 16px;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    margin-bottom: 16px;
   }
 
   .form-desc {
-    font-size: 16px; line-height: 1.7;
-    color: #555; font-weight: 300; margin-bottom: 48px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #666;
+    font-weight: 300;
+    margin-bottom: 48px;
   }
 
+  /* Step indicator */
+  .steps {
+    display: flex;
+    gap: 0;
+    margin-bottom: 48px;
+  }
+
+  .step-indicator {
+    flex: 1;
+    text-align: center;
+    padding: 14px 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #bbb;
+    border-bottom: 3px solid #e0e0e0;
+    transition: all 0.3s;
+  }
+
+  .step-indicator.active {
+    color: var(--navy);
+    border-bottom-color: var(--navy);
+  }
+
+  .step-indicator.done {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* Form steps */
+  .form-step { display: none; }
+  .form-step.active { display: block; }
+
   .reg-form {
-    display: flex; flex-direction: column; gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
   .form-row {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
   }
 
   .form-group {
-    display: flex; flex-direction: column; gap: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
   .form-group.full { grid-column: 1 / -1; }
 
   .form-group label {
-    font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    font-weight: 500;
   }
 
   .form-group input,
   .form-group select,
   .form-group textarea {
     font-family: var(--sans);
-    font-size: 15px; padding: 14px 16px;
-    border: 1px solid rgba(0,0,0,0.12);
-    background: var(--white); color: var(--dark);
-    transition: border-color 0.2s; outline: none;
+    font-size: 1rem;
+    padding: 16px 20px;
+    border: 2px solid rgba(0,0,0,0.08);
+    background: var(--white);
+    color: var(--dark);
+    transition: border-color 0.3s;
+    outline: none;
+    border-radius: 0;
   }
 
   .form-group input:focus,
   .form-group select:focus,
   .form-group textarea:focus {
-    border-color: var(--green);
+    border-color: var(--navy);
   }
 
   .form-group textarea { resize: vertical; }
 
+  .form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M6 8L1 3h10z' fill='rgba(0,0,0,0.3)'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+
   .gdpr-label {
-    display: flex; gap: 12px; align-items: flex-start;
-    cursor: pointer; font-size: 14px; color: #555; line-height: 1.5;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
   }
 
   .gdpr-label input[type="checkbox"] {
-    margin-top: 4px; flex-shrink: 0; width: 18px; height: 18px;
+    margin-top: 4px;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--navy);
   }
 
-  .btn-submit {
-    align-self: flex-start; margin-top: 16px;
-    border: none; cursor: pointer;
+  .btn-navy {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    padding: 18px 52px;
     font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
   }
 
-  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+  .btn-navy:hover {
+    background: var(--navy-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(22,33,62,0.3);
+  }
 
-  .form-message { font-size: 15px; margin-top: 12px; line-height: 1.5; }
-  .form-message.success { color: var(--green); font-weight: 500; }
-  .form-message.error { color: #c0392b; font-weight: 500; }
+  .btn-submit { align-self: flex-start; margin-top: 16px; }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .form-nav {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .btn-back {
+    background: none;
+    border: 2px solid rgba(0,0,0,0.1);
+    color: #666;
+    padding: 16px 36px;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn-back:hover { border-color: var(--navy); color: var(--navy); }
+
+  /* Step 2: info box */
+  .expect-box {
+    background: var(--navy-pale);
+    padding: 36px;
+    margin-bottom: 24px;
+  }
+
+  .expect-box h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    color: var(--navy);
+  }
+
+  .expect-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .expect-list li {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .expect-list li::before {
+    content: '→';
+    color: var(--navy);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .form-message { font-size: 0.95rem; margin-top: 16px; line-height: 1.6; }
+  .form-message.error { color: #c0392b; font-weight: 600; }
+
+  /* Success state */
+  .success-overlay {
+    display: none;
+    text-align: center;
+    padding: 60px 24px;
+    animation: successIn 0.6s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+  .success-overlay.visible { display: block; }
+
+  .success-check {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(46,204,113,0.3);
+    animation: checkPop 0.5s cubic-bezier(0.16,1,0.3,1) 0.2s both;
+  }
+
+  .success-check svg {
+    width: 40px;
+    height: 40px;
+    stroke: #fff;
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .success-check svg path {
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: checkDraw 0.4s ease 0.5s forwards;
+  }
+
+  .success-title {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--dark);
+    margin-bottom: 12px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+
+  .success-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #666;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto;
+    animation: fadeUp 0.5s ease 0.55s both;
+  }
+
+  .success-text strong {
+    color: #27ae60;
+    font-weight: 600;
+  }
+
+  .success-envelope {
+    margin-top: 32px;
+    animation: envelopeFly 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s both;
+    font-size: 2.5rem;
+  }
+
+  @keyframes successIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes checkPop {
+    from { opacity: 0; transform: scale(0.3); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes checkDraw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes envelopeFly {
+    0% { opacity: 0; transform: translateY(20px) scale(0.5); }
+    50% { opacity: 1; transform: translateY(-8px) scale(1.1); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* (removed -sending animation and flyaway no longer needed) */
+
+  /* Mailman scene */
+  .mailman-overlay {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .mailman-overlay.visible {
+    display: flex;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .mailman-scene {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #87CEEB 0%, #B0E0FF 50%, #8BC34A 50%, #6DA832 100%);
+  }
+
+  /* Clouds */
+  .cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 50px;
+    opacity: 0.8;
+  }
+  .cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .cloud-1 { width: 70px; height: 24px; top: 30px; animation: cloudDrift 8s linear infinite; }
+  .cloud-1::before { width: 36px; height: 36px; top: -18px; left: 12px; }
+  .cloud-1::after { width: 24px; height: 24px; top: -10px; left: 38px; }
+  .cloud-2 { width: 50px; height: 18px; top: 60px; animation: cloudDrift 12s linear 3s infinite; }
+  .cloud-2::before { width: 28px; height: 28px; top: -14px; left: 8px; }
+  .cloud-2::after { width: 18px; height: 18px; top: -8px; left: 28px; }
+
+  @keyframes cloudDrift {
+    from { left: -100px; }
+    to { left: calc(100% + 100px); }
+  }
+
+  /* Ground / path */
+  .ground-path {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: #6DA832;
+  }
+
+  .path {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: #C4A060;
+    border-radius: 6px;
+  }
+
+  /* Mailbox */
+  .mailbox {
+    position: absolute;
+    right: 80px;
+    bottom: 32px;
+    z-index: 2;
+  }
+
+  .mailbox-post {
+    width: 8px;
+    height: 40px;
+    background: #5D4037;
+    margin: 0 auto;
+  }
+
+  .mailbox-box {
+    width: 36px;
+    height: 28px;
+    background: #D32F2F;
+    border-radius: 4px 4px 2px 2px;
+    position: relative;
+  }
+
+  .mailbox-box::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -2px;
+    width: 40px;
+    height: 10px;
+    background: #B71C1C;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .mailbox-slot {
+    width: 20px;
+    height: 4px;
+    background: #1A1A14;
+    border-radius: 2px;
+    margin: 10px auto 0;
+  }
+
+  /* Post office building */
+  .post-office {
+    position: absolute;
+    right: 20px;
+    bottom: 32px;
+    z-index: 1;
+  }
+
+  .po-building {
+    width: 60px;
+    height: 55px;
+    background: #F5E6CA;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+  }
+
+  .po-roof {
+    width: 70px;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid #8D6E63;
+    position: absolute;
+    top: -20px;
+    left: -5px;
+  }
+
+  .po-door {
+    width: 16px;
+    height: 24px;
+    background: #5D4037;
+    border-radius: 8px 8px 0 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .po-window {
+    width: 12px;
+    height: 12px;
+    background: #87CEEB;
+    border: 2px solid #8D6E63;
+    position: absolute;
+    top: 10px;
+  }
+
+  .po-window:nth-child(3) { left: 6px; }
+  .po-window:nth-child(4) { right: 6px; }
+
+  /* Mailman -runs to queue, waits, shuffles, delivers */
+  .mailman {
+    position: absolute;
+    bottom: 32px;
+    left: -60px;
+    z-index: 3;
+    animation: mailmanRun 2.5s cubic-bezier(0.2, 0.1, 0.3, 1) forwards;
+  }
+
+  @keyframes mailmanRun {
+    0% { left: -60px; }
+    80% { left: calc(100% - 165px); }
+    87% { left: calc(100% - 165px); transform: translateY(-3px); }
+    94% { left: calc(100% - 165px); transform: translateY(0); }
+    100% { left: calc(100% - 165px); }
+  }
+
+  /* Queue people */
+  .queue-person {
+    position: absolute;
+    bottom: 32px;
+    z-index: 2;
+  }
+
+  .qp-head {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin: 0 auto 2px;
+  }
+
+  .qp-body {
+    width: 16px;
+    height: 18px;
+    border-radius: 4px 4px 0 0;
+    margin: 0 auto;
+  }
+
+  .qp-legs {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+  }
+
+  .qp-leg {
+    width: 5px;
+    height: 10px;
+    background: #5D4037;
+    border-radius: 0 0 2px 2px;
+  }
+
+  /* Queue person 1 (closest to mailbox) */
+  .queue-person-1 {
+    right: 130px;
+    animation: queueLeave1 0.3s ease 0.8s forwards;
+  }
+  .queue-person-1 .qp-head { background: #FFCC80; }
+  .queue-person-1 .qp-body { background: #E91E63; }
+
+  /* Queue person 2 */
+  .queue-person-2 {
+    right: 160px;
+    animation: queueMove2 0.3s ease 1.2s forwards;
+  }
+  .queue-person-2 .qp-head { background: #8D6E63; }
+  .queue-person-2 .qp-body { background: #2196F3; }
+
+  /* Queue person 3 */
+  .queue-person-3 {
+    right: 190px;
+    animation: queueMove3 0.3s ease 1.5s forwards;
+  }
+  .queue-person-3 .qp-head { background: #FFCC80; }
+  .queue-person-3 .qp-body { background: #FF9800; }
+
+  @keyframes queueLeave1 {
+    0% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(40px); }
+  }
+
+  @keyframes queueMove2 {
+    0% { right: 160px; }
+    100% { right: 130px; opacity: 0; transform: translateX(40px); }
+  }
+
+  @keyframes queueMove3 {
+    0% { right: 190px; }
+    100% { right: 160px; opacity: 0; transform: translateX(30px); }
+  }
+
+  .mailman-body {
+    position: relative;
+    width: 44px;
+    height: 60px;
+  }
+
+  /* Head */
+  .mm-head {
+    width: 22px;
+    height: 22px;
+    background: #FFCC80;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 11px;
+  }
+
+  /* Eyes */
+  .mm-eye {
+    width: 3px;
+    height: 3px;
+    background: #3E2723;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+  }
+
+  .mm-eye-l { left: 6px; }
+  .mm-eye-r { right: 6px; }
+
+  /* Smile */
+  .mm-head::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 4px;
+    border-bottom: 2px solid #D4956A;
+    border-radius: 0 0 6px 6px;
+  }
+
+  /* Hat -proper postman cap */
+  .mm-hat {
+    position: absolute;
+    top: -8px;
+    left: 7px;
+    width: 28px;
+    height: 14px;
+    background: var(--navy);
+    border-radius: 14px 14px 0 0;
+    z-index: 1;
+  }
+
+  /* Hat brim */
+  .mm-hat::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -3px;
+    width: 34px;
+    height: 5px;
+    background: var(--navy-bright);
+    border-radius: 2px;
+  }
+
+  /* Hat badge */
+  .mm-hat-badge {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  /* Torso -uniform with buttons */
+  .mm-torso {
+    width: 26px;
+    height: 22px;
+    background: linear-gradient(180deg, var(--navy), var(--navy-bright));
+    position: absolute;
+    top: 20px;
+    left: 9px;
+    border-radius: 4px 4px 0 0;
+  }
+
+  /* Buttons on uniform */
+  .mm-button {
+    width: 3px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .mm-button:nth-child(1) { top: 5px; }
+  .mm-button:nth-child(2) { top: 12px; }
+
+  /* Belt */
+  .mm-belt {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #5D4037;
+  }
+
+  .mm-belt::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 1px;
+  }
+
+  /* Legs - animated */
+  .mm-leg {
+    width: 9px;
+    height: 18px;
+    background: #37474F;
+    position: absolute;
+    top: 40px;
+    border-radius: 0 0 3px 3px;
+  }
+
+  .mm-leg-l { left: 10px; animation: legRun 0.3s ease infinite alternate; }
+  .mm-leg-r { left: 24px; animation: legRun 0.3s ease infinite alternate-reverse; }
+
+  /* Shoes */
+  .mm-shoe {
+    width: 12px;
+    height: 5px;
+    background: #1A1A14;
+    border-radius: 0 6px 3px 3px;
+    position: absolute;
+    bottom: -2px;
+    left: -1px;
+  }
+
+  @keyframes legRun {
+    from { transform: rotate(-20deg); transform-origin: top center; }
+    to { transform: rotate(20deg); transform-origin: top center; }
+  }
+
+  /* Arm with envelope -skin colored hand */
+  .mm-arm {
+    width: 26px;
+    height: 9px;
+    background: linear-gradient(90deg, var(--navy) 60%, #FFCC80 60%);
+    position: absolute;
+    top: 24px;
+    right: -8px;
+    border-radius: 5px;
+    transform: rotate(-15deg);
+    animation: armWave 0.3s ease infinite alternate;
+  }
+
+  @keyframes armWave {
+    from { transform: rotate(-20deg); }
+    to { transform: rotate(-10deg); }
+  }
+
+  /* Mailbag */
+  .mm-bag {
+    width: 14px;
+    height: 18px;
+    background: #8D6E63;
+    border-radius: 3px;
+    position: absolute;
+    top: 16px;
+    left: -2px;
+    border: 1px solid #6D4C41;
+  }
+
+  .mm-bag::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 2px;
+    width: 10px;
+    height: 8px;
+    border-top: 2px solid #6D4C41;
+    border-radius: 4px 4px 0 0;
+  }
+
+  /* Letter in hand */
+  .mm-letter {
+    width: 18px;
+    height: 13px;
+    background: #FFF;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -9px;
+    right: -12px;
+    border-radius: 1px;
+    transform: rotate(-5deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .mm-letter::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 5px solid #f0e0e0;
+  }
+
+  /* Dog chasing mailman */
+  .dog {
+    position: absolute;
+    bottom: 32px;
+    left: -80px;
+    z-index: 2;
+    animation: dogChase 3s cubic-bezier(0.2, 0.1, 0.3, 1) forwards;
+  }
+
+  @keyframes dogChase {
+    0% { left: -80px; }
+    25% { left: calc(100% - 340px); }
+    30%, 50% { left: calc(100% - 330px); }
+    60% { left: calc(100% - 300px); }
+    70% { left: calc(100% - 270px); }
+    85% { left: calc(100% - 200px); }
+    100% { left: calc(100% - 175px); }
+  }
+
+  .dog-body {
+    position: relative;
+    width: 36px;
+    height: 32px;
+  }
+
+  /* Dog torso */
+  .dog-torso {
+    width: 28px;
+    height: 14px;
+    background: #8D6E63;
+    border-radius: 8px;
+    position: absolute;
+    top: 12px;
+    left: 4px;
+  }
+
+  /* Dark patch on back */
+  .dog-torso::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 12px;
+    height: 8px;
+    background: #6D4C41;
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* Dog head */
+  .dog-head {
+    width: 16px;
+    height: 14px;
+    background: #8D6E63;
+    border-radius: 8px 10px 4px 4px;
+    position: absolute;
+    top: 6px;
+    right: 0;
+  }
+
+  /* Snout */
+  .dog-head::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: -4px;
+    width: 10px;
+    height: 8px;
+    background: #A1887F;
+    border-radius: 4px;
+  }
+
+  /* Dog eye */
+  .dog-eye {
+    width: 3px;
+    height: 3px;
+    background: #1A1A14;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    right: 3px;
+  }
+
+  /* Dog nose */
+  .dog-nose {
+    width: 4px;
+    height: 3px;
+    background: #1A1A14;
+    border-radius: 2px;
+    position: absolute;
+    bottom: 2px;
+    right: -6px;
+    z-index: 1;
+  }
+
+  /* Ears */
+  .dog-ear {
+    width: 8px;
+    height: 10px;
+    background: #6D4C41;
+    border-radius: 4px 4px 6px 6px;
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    transform: rotate(-10deg);
+    animation: earFlop 0.3s ease infinite alternate;
+  }
+
+  @keyframes earFlop {
+    from { transform: rotate(-15deg); }
+    to { transform: rotate(-5deg); }
+  }
+
+  /* Tail */
+  .dog-tail {
+    width: 4px;
+    height: 14px;
+    background: #8D6E63;
+    border-radius: 4px;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    transform-origin: bottom;
+    animation: tailWag 0.2s ease infinite alternate;
+  }
+
+  @keyframes tailWag {
+    from { transform: rotate(-30deg); }
+    to { transform: rotate(30deg); }
+  }
+
+  /* Dog legs */
+  .dog-leg {
+    width: 5px;
+    height: 10px;
+    background: #8D6E63;
+    position: absolute;
+    top: 24px;
+    border-radius: 0 0 2px 2px;
+  }
+
+  .dog-leg-fl { right: 4px; animation: dogLegRun 0.2s ease infinite alternate; }
+  .dog-leg-fr { right: 10px; animation: dogLegRun 0.2s ease infinite alternate-reverse; }
+  .dog-leg-bl { left: 6px; animation: dogLegRun 0.2s ease infinite alternate-reverse; }
+  .dog-leg-br { left: 12px; animation: dogLegRun 0.2s ease infinite alternate; }
+
+  @keyframes dogLegRun {
+    from { transform: rotate(-25deg); transform-origin: top; }
+    to { transform: rotate(25deg); transform-origin: top; }
+  }
+
+  /* Tongue */
+  .dog-tongue {
+    width: 4px;
+    height: 5px;
+    background: #E57373;
+    border-radius: 0 0 3px 3px;
+    position: absolute;
+    bottom: -3px;
+    right: -2px;
+    animation: tongueBob 0.3s ease infinite alternate;
+  }
+
+  @keyframes tongueBob {
+    from { height: 4px; }
+    to { height: 6px; }
+  }
+
+  /* Letter flies into mailbox */
+  .letter-fly {
+    position: absolute;
+    right: 92px;
+    bottom: 62px;
+    width: 20px;
+    height: 14px;
+    background: #FFF;
+    border: 1px solid #ddd;
+    border-radius: 1px;
+    z-index: 4;
+    opacity: 0;
+    animation: letterIntoBox 0.3s ease 2.2s forwards;
+  }
+
+  @keyframes letterIntoBox {
+    0% { opacity: 1; transform: translateX(-20px) translateY(-10px) rotate(-10deg); }
+    80% { opacity: 1; transform: translateX(0) translateY(0) rotate(0deg); }
+    100% { opacity: 0; transform: translateX(2px) translateY(4px) scale(0.5); }
+  }
+
+  /* ===== SCENE 2: Jana's desk ===== */
+  .scene-2 {
+    display: none;
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: linear-gradient(180deg, #F5F0E6 0%, #EDE5D4 100%);
+  }
+
+  .scene-2.visible {
+    display: block;
+    animation: sceneSwap 0.5s ease;
+  }
+
+  @keyframes sceneSwap {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Desk */
+  .desk {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 340px;
+    height: 100px;
+    background: #8D6E63;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .desk::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: #6D4C41;
+    border-radius: 8px 8px 0 0;
+  }
+
+  /* Jana sitting */
+  .jana {
+    position: absolute;
+    bottom: 96px;
+    left: 50%;
+    transform: translateX(-70px);
+    z-index: 2;
+  }
+
+  .jana-head {
+    width: 36px;
+    height: 36px;
+    background: #FFCC80;
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Smile */
+  .jana-head::after {
+    content: '';
+    position: absolute;
+    bottom: 9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 6px;
+    border-bottom: 2px solid #D4956A;
+    border-radius: 0 0 8px 8px;
+  }
+
+  /* Eyes */
+  .jana-eye {
+    width: 4px;
+    height: 4px;
+    background: #3E2723;
+    border-radius: 50%;
+    position: absolute;
+    top: 14px;
+  }
+
+  .jana-eye-l { left: 10px; }
+  .jana-eye-r { right: 10px; }
+
+  /* Hair -long flowing */
+  .jana-hair {
+    position: absolute;
+    top: -5px;
+    left: -6px;
+    width: 48px;
+    height: 24px;
+    background: #4E342E;
+    border-radius: 24px 24px 0 0;
+    z-index: -1;
+  }
+
+  /* Left hair strand -long */
+  .jana-hair::before {
+    content: '';
+    position: absolute;
+    bottom: -24px;
+    left: -2px;
+    width: 16px;
+    height: 30px;
+    background: #4E342E;
+    border-radius: 0 0 8px 12px;
+  }
+
+  /* Right hair strand -long */
+  .jana-hair::after {
+    content: '';
+    position: absolute;
+    bottom: -22px;
+    right: -2px;
+    width: 16px;
+    height: 28px;
+    background: #4E342E;
+    border-radius: 0 0 12px 8px;
+  }
+
+  /* Necklace */
+  .jana-necklace {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    box-shadow: 0 0 4px rgba(196,163,90,0.4);
+  }
+
+  .jana-torso {
+    width: 40px;
+    height: 30px;
+    background: linear-gradient(180deg, var(--gold), #B8943F);
+    border-radius: 8px 8px 0 0;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Collar / neckline */
+  .jana-torso::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 8px;
+    background: #FFCC80;
+    border-radius: 0 0 8px 8px;
+  }
+
+  /* Arms */
+  .jana-arm-l, .jana-arm-r {
+    width: 10px;
+    height: 24px;
+    background: #FFCC80;
+    position: absolute;
+    top: 4px;
+    border-radius: 5px;
+  }
+
+  .jana-arm-l {
+    left: -8px;
+    transform: rotate(20deg);
+    background: linear-gradient(180deg, #FFCC80 40%, var(--gold) 40%);
+  }
+
+  .jana-arm-r {
+    right: -8px;
+    transform: rotate(-20deg);
+    background: linear-gradient(180deg, #FFCC80 40%, var(--gold) 40%);
+  }
+
+  /* Desk items */
+  .desk-letter {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 42px;
+    background: #FFF;
+    border: 2px solid #e0e0e0;
+    border-radius: 2px;
+    z-index: 3;
+    opacity: 0;
+    animation: letterArrive 0.5s ease 0.3s forwards;
+  }
+
+  .desk-letter::after {
+    content: '';
+    position: absolute;
+    top: 4px; left: 4px; right: 4px;
+    height: 0;
+    border-left: 26px solid transparent;
+    border-right: 26px solid transparent;
+    border-top: 16px solid #f0f0f0;
+  }
+
+  /* Letter lines (text) */
+  .desk-letter-lines {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .desk-letter-lines div {
+    height: 2px;
+    background: #ddd;
+    margin-bottom: 3px;
+    border-radius: 1px;
+  }
+
+  .desk-letter-lines div:nth-child(1) { width: 80%; }
+  .desk-letter-lines div:nth-child(2) { width: 60%; }
+  .desk-letter-lines div:nth-child(3) { width: 70%; }
+
+  @keyframes letterArrive {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+    60% { opacity: 1; transform: translateX(-50%) translateY(2px); }
+    100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  /* Coffee mug */
+  .desk-mug {
+    position: absolute;
+    top: 16px;
+    right: 40px;
+    width: 18px;
+    height: 20px;
+    background: var(--navy);
+    border-radius: 0 0 4px 4px;
+    z-index: 3;
+  }
+
+  .desk-mug::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: -7px;
+    width: 8px;
+    height: 12px;
+    border: 2px solid var(--navy);
+    border-left: none;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* Steam */
+  .desk-mug::after {
+    content: '~';
+    position: absolute;
+    top: -14px;
+    left: 4px;
+    font-size: 14px;
+    color: rgba(0,0,0,0.15);
+    animation: steam 1.5s ease infinite;
+  }
+
+  @keyframes steam {
+    0%, 100% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 0.6; transform: translateY(-4px); }
+  }
+
+  /* Plant */
+  .desk-plant {
+    position: absolute;
+    top: 6px;
+    left: 30px;
+    z-index: 3;
+  }
+
+  .desk-plant-pot {
+    width: 16px;
+    height: 14px;
+    background: #D32F2F;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .desk-plant-leaf {
+    width: 8px;
+    height: 14px;
+    background: #4CAF50;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    top: -12px;
+  }
+
+  .desk-plant-leaf:nth-child(1) { left: 0; transform: rotate(-15deg); }
+  .desk-plant-leaf:nth-child(2) { left: 4px; }
+  .desk-plant-leaf:nth-child(3) { left: 8px; transform: rotate(15deg); }
+
+  /* THE STAMP -positioned on the letter, not on Jana */
+  .stamp {
+    position: absolute;
+    top: auto;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%) scale(1.8) rotate(-12deg);
+    z-index: 10;
+    opacity: 0;
+    animation: stampSlam 0.3s cubic-bezier(0.1, 0.8, 0.2, 1) 0.8s forwards;
+  }
+
+  .stamp-box {
+    border: 3px solid #2ecc71;
+    border-radius: 6px;
+    padding: 6px 16px;
+    background: rgba(46,204,113,0.1);
+    transform: rotate(-12deg);
+  }
+
+  .stamp-text {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2ecc71;
+    white-space: nowrap;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .stamp-check {
+    font-size: 1rem;
+    margin-left: 6px;
+  }
+
+  @keyframes stampSlam {
+    0% { opacity: 0; transform: translateX(-50%) scale(3.5) rotate(-12deg); }
+    60% { opacity: 1; transform: translateX(-50%) scale(1.6) rotate(-12deg); }
+    80% { transform: translateX(-50%) scale(1.9) rotate(-12deg); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1.8) rotate(-12deg); }
+  }
+
+  /* Stamp shake on impact */
+  .scene-2.stamped {
+    animation: deskShake 0.15s ease 0.8s;
+  }
+
+  @keyframes deskShake {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
+
+  /* Notice board on wall -LEFT side, large & readable */
+  .notice-board {
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    width: 180px;
+    background: #FFF9E6;
+    border: 3px solid #8D6E63;
+    border-radius: 4px;
+    padding: 16px;
+    z-index: 1;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.12);
+  }
+
+  /* Pin */
+  .notice-board::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #D32F2F;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .notice-line-1, .notice-line-2 {
+    text-align: center;
+    opacity: 0;
+  }
+
+  .notice-line-1 {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    animation: noticeAppear 0.4s ease 1.2s forwards;
+  }
+
+  .notice-line-2 {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: #5D4037;
+    line-height: 1.6;
+    font-weight: 400;
+    animation: noticeAppear 0.4s ease 1.8s forwards;
+  }
+
+  @keyframes noticeAppear {
+    0% { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Mobile: scenes stack, smaller */
+  @media (max-width: 768px) {
+    .mailman-scene, .scene-2 { height: 240px; }
+    .notice-board { width: 140px; padding: 12px; left: 10px; top: 8px; }
+    .notice-line-1 { font-size: 0.85rem; }
+    .notice-line-2 { font-size: 0.7rem; }
+    .stamp { transform: translateX(-50%) scale(1.2) rotate(-12deg); }
+    .jana { transform: translateX(-50px); }
+    .desk { width: 280px; }
+    .post-office { right: 10px; }
+    .mailbox { right: 60px; }
+    .queue-person-1 { right: 100px; }
+    .queue-person-2 { right: 125px; }
+    .queue-person-3 { right: 150px; }
+  }
+
+  /* Jana arm stamps */
+  .jana-stamp-arm {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(20px);
+    z-index: 5;
+    opacity: 0;
+  }
+
+  .jana-stamp-arm.animate {
+    animation: armStamp 0.4s ease 1.3s forwards;
+  }
+
+  @keyframes armStamp {
+    0% { opacity: 1; transform: translateX(20px) translateY(-40px) rotate(-30deg); }
+    70% { opacity: 1; transform: translateX(20px) translateY(0px) rotate(0deg); }
+    100% { opacity: 1; transform: translateX(20px) translateY(0px) rotate(0deg); }
+  }
+
+  .scene-2-status {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 1px;
+  }
+
+  /* Status text -hidden, only used by JS for state */
+  .mailman-status { display: none; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 
   /* ========== MÍSTO KONÁNÍ ========== */
-  .venue { padding: 100px 24px; }
+  .venue {
+    padding: 120px 48px;
+    background: var(--white);
+  }
 
   .venue-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
   }
+
+  .venue .label { color: var(--navy); }
 
   .venue-title {
     font-family: var(--serif);
-    font-size: clamp(32px, 4vw, 44px);
-    font-weight: 700; margin-bottom: 24px; line-height: 1.2;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    margin-bottom: 24px;
   }
 
   .venue-address {
-    font-size: 16px; line-height: 1.8;
-    color: #555; font-weight: 300; margin-bottom: 32px;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #666;
+    font-weight: 300;
   }
 
-  .venue-address strong {
-    color: var(--dark); font-weight: 500; display: block;
-  }
+  .venue-address strong { color: var(--dark); font-weight: 500; display: block; }
 
   .venue-map {
-    height: 400px; overflow: hidden;
-    border: 1px solid rgba(4,106,56,0.15);
+    height: 420px;
+    overflow: hidden;
+    border: 1px solid rgba(22,33,62,0.1);
   }
 
-  .venue-map iframe {
-    width: 100%; height: 100%; border: 0;
-  }
+  .venue-map iframe { width: 100%; height: 100%; border: 0; }
 
   /* ========== FOOTER ========== */
   footer {
-    background: var(--dark);
-    padding: 48px 24px; text-align: center;
+    background: var(--navy-dark);
+    padding: 64px 48px;
+    text-align: center;
   }
 
-  .footer-brand {
-    font-family: var(--serif);
-    font-size: 24px; color: var(--white); font-weight: 700;
-    margin-bottom: 8px;
-  }
+  .footer-brand { font-family: var(--serif); font-size: 1.5rem; color: var(--white); margin-bottom: 8px; }
+  .footer-sub { font-size: 0.8rem; color: rgba(255,255,255,0.3); letter-spacing: 2px; text-transform: uppercase; }
+  .footer-divider { width: 40px; height: 2px; background: var(--gold); margin: 28px auto; }
 
-  .footer-sub {
-    font-size: 12px; color: rgba(255,255,255,0.3);
-    letter-spacing: 2px; text-transform: uppercase;
-  }
+  .footer-social { display: flex; justify-content: center; gap: 32px; margin-bottom: 20px; }
+  .footer-social a { color: rgba(255,255,255,0.35); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+  .footer-social a:hover { color: var(--gold-light); }
 
-  .footer-divider {
-    width: 40px; height: 1px;
-    background: var(--gold); margin: 24px auto;
-  }
+  .footer-contact { font-size: 0.85rem; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+  .footer-contact a { color: var(--gold-light); text-decoration: none; }
 
-  .footer-social {
-    display: flex; justify-content: center; gap: 24px;
-    margin-bottom: 16px;
-  }
+  .footer-legal { font-size: 0.75rem; color: rgba(255,255,255,0.15); }
+  .footer-version { font-size: 0.65rem; color: rgba(255,255,255,0.08); margin-top: 12px; }
 
-  .footer-social a {
-    color: rgba(255,255,255,0.4); text-decoration: none;
-    font-size: 13px; transition: color 0.2s;
-  }
-
-  .footer-social a:hover { color: var(--gold); }
-
-  .footer-contact {
-    font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 16px;
-  }
-
-  .footer-contact a { color: var(--gold); text-decoration: none; }
-
-  .footer-legal {
-    font-size: 11px; color: rgba(255,255,255,0.2);
-  }
-
-  .footer-version {
-    font-size: 10px; color: rgba(255,255,255,0.15);
-    margin-top: 12px;
-  }
-
-  /* ========== STICKY MOBILE CTA ========== */
+  /* ========== STICKY CTA ========== */
   .sticky-cta {
     display: none;
-    position: fixed; bottom: 0; left: 0; right: 0;
-    z-index: 100; background: var(--green);
-    padding: 12px 24px; text-align: center;
-    box-shadow: 0 -4px 24px rgba(0,0,0,0.2);
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--navy);
+    padding: 12px 24px;
+    text-align: center;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
   }
 
   .sticky-cta a {
     display: block;
-    background: var(--gold); color: var(--dark);
-    padding: 14px 24px;
+    background: var(--gold);
+    color: var(--navy-dark);
+    padding: 16px 24px;
     font-family: var(--sans);
-    font-size: 14px; font-weight: 500;
-    letter-spacing: 2px; text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
     text-decoration: none;
   }
 
-  /* ========== ANIMACE ========== */
+  /* ========== ANIMATIONS ========== */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   /* ========== RESPONSIVE ========== */
+  @media (max-width: 1024px) {
+    .format-cards, .proof-grid, .people-grid { grid-template-columns: 1fr 1fr; }
+  }
+
   @media (max-width: 768px) {
+    html { font-size: 16px; }
     .sticky-cta { display: block; }
     body { padding-bottom: 70px; }
-    .form-row { grid-template-columns: 1fr; }
+
+    .hero-nav { padding: 20px 24px; }
+    .hero-nav-links { display: none; }
+    .hero-main { padding: 32px 24px 20px; }
+    .hero-bottom { gap: 24px; padding: 20px 24px; flex-wrap: wrap; }
+
+    .letter, .format, .program, .people, .proof, .ticket, .form-section, .venue { padding: 80px 24px; }
+
+    .letter-inner { grid-template-columns: 1fr; gap: 24px; }
+    .format-cards, .proof-grid, .people-grid { grid-template-columns: 1fr; }
     .deeptalk-inner, .venue-inner { grid-template-columns: 1fr; gap: 40px; }
-    .program-item { grid-template-columns: 80px 1fr; gap: 16px; }
-    .hero-meta { flex-direction: column; gap: 12px; }
-    .hero-meta-divider { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .program-item { grid-template-columns: 80px 1fr; gap: 20px; }
+    .hero-ctas { flex-direction: column; align-items: center; }
+    .trust { gap: 20px; padding: 16px 24px; }
     .ticket-includes { flex-direction: column; align-items: center; gap: 16px; }
+    .steps { font-size: 0.65rem; }
   }
 </style>
 </head>
@@ -681,136 +2274,141 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <p class="hero-label">Ostrava · 23. dubna 2026</p>
-    <h1 class="hero-title">TVŮJ</h1>
-    <h1 class="hero-title-sub">Člověk</h1>
-    <div class="hero-meta">
-      <span>17:00 – 21:00</span>
-      <span class="hero-meta-divider"></span>
-      <span>Restaurant Café Ostrava-Poruba</span>
-      <span class="hero-meta-divider"></span>
-      <span>Pro lidi 30+</span>
+  <div class="hero-circle"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-circle"></div>
+
+  <nav class="hero-nav">
+    <span class="hero-nav-brand">TVŮJ ČLOVĚK</span>
+    <div class="hero-nav-links">
+      <a href="#program-section">Program</a>
+      <a href="#registrace">Vstupné</a>
+      <a href="#formular" class="hero-nav-cta">Chci být u toho</a>
     </div>
-    <div class="hero-cta">
-      <a href="#formular" class="btn-primary">Rezervovat místo →</a>
+  </nav>
+
+  <div class="hero-main">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Ostrava · 23. dubna 2026</div>
+      <h1 class="hero-headline">Nejlepší rozhovory začínají <em>záměrem.</em></h1>
+      <p class="hero-sub">Večer pro lidi 30+, kteří nechtějí další small talk. Workshop. Rozhovory. Propojení, které zůstane.</p>
+      <div class="hero-ctas">
+        <a href="#formular" class="btn-gold">Chci být u toho →</a>
+        <a href="#program-section" class="btn-ghost">Zjistit více</a>
+      </div>
     </div>
-    <p class="hero-spots">Kapacita 50 míst · Každý účastník prochází výběrem</p>
   </div>
-  <div class="hero-scroll">↓  Více informací</div>
-</section>
 
-<!-- INTRO -->
-<section class="intro">
-  <p class="eyebrow" style="color: var(--green);">O čem to je</p>
-  <p class="intro-text">
-    Kdy jste naposledy poznali někoho, u koho jste si řekli — <em>tohohle člověka do svého života chci?</em>
-  </p>
-  <div class="divider"></div>
-  <p class="intro-desc">
-    Ne kontakt. Ne konverzaci která vyšumí za týden. Ale člověka, s kým si sednete přirozeně — hodnotově, energeticky, životně.<br><br>
-    TVŮJ ČLOVĚK je promyšlený večerní formát pro lidi 30+. Ne klasická seznamka. Ne klasický networking. Večer, kde může vzniknout něco skutečného.
-  </p>
-</section>
-
-<!-- CO VÁS ČEKÁ -->
-<section class="what">
-  <div class="section-inner">
-    <span class="section-label" style="color: var(--gold);">Co vás čeká</span>
-    <div class="what-grid">
-      <div class="what-item">
-        <div class="what-number">01</div>
-        <div class="what-title">Deep Talk Workshop</div>
-        <p class="what-desc">Naučíte se komunikovat tak, aby vás lidé chtěli poslouchat a pamatovali si vás. Praktická cvičení, žádná teorie.</p>
-      </div>
-      <div class="what-item">
-        <div class="what-number">02</div>
-        <div class="what-title">Skutečné rozhovory</div>
-        <p class="what-desc">Čas na opravdové propojení — ne vizitky, ne small talk. Řízené i volné setkávání v prostředí které tomu dává smysl.</p>
-      </div>
-      <div class="what-item">
-        <div class="what-number">03</div>
-        <div class="what-title">Vybraná společnost</div>
-        <p class="what-desc">Úspěšní podnikatelé, odborníci, zajímaví lidé. Každý účastník prochází výběrem — záleží nám na složení skupiny.</p>
-      </div>
-      <div class="what-item">
-        <div class="what-number">04</div>
-        <div class="what-title">Raut &amp; atmosféra</div>
-        <p class="what-desc">Prosecco na přivítání, raut po celý večer, kvalitní víno. Přijdete a budete se cítit dobře — od první minuty.</p>
-      </div>
-      <div class="what-item">
-        <div class="what-number">05</div>
-        <div class="what-title">Kurátorovaná skupina</div>
-        <p class="what-desc">Maximálně 50 lidí. Každý účastník prochází výběrem — dbáme na pestrost, věk i profesní mix.</p>
-      </div>
-      <div class="what-item">
-        <div class="what-number">06</div>
-        <div class="what-title">Kontakty na celý život</div>
-        <p class="what-desc">Nejde o vizitky. Jde o lidi, se kterými si sednete — a kteří ve vašem životě zůstanou.</p>
-      </div>
+  <div class="hero-bottom">
+    <div class="hero-stat">
+      <div class="hero-stat-num">50</div>
+      <div class="hero-stat-label">Míst</div>
+    </div>
+    <div class="hero-stat-div"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">30+</div>
+      <div class="hero-stat-label">Věk</div>
+    </div>
+    <div class="hero-stat-div"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4,5h</div>
+      <div class="hero-stat-label">Program</div>
+    </div>
+    <div class="hero-stat-div"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">1×</div>
+      <div class="hero-stat-label">Jedinečný večer</div>
     </div>
   </div>
 </section>
 
-<!-- DEEP TALK -->
-<section class="deeptalk">
-  <div class="deeptalk-inner">
-    <div>
-      <span class="deeptalk-tag">Workshop večera</span>
-      <h2 class="deeptalk-title">Co je Deep Talk?</h2>
-      <p class="deeptalk-desc">
-        Deep Talk je umění vést rozhovor, který druhého zaujme, zasáhne a zanechá stopu. Nejde o techniky. Jde o autentický kontakt.
+<!-- TRUST BAR -->
+<div class="trust">
+  <span>Workshop Deep Talk</span>
+  <span>Raut &amp; nápoje v ceně</span>
+  <span>Pečlivě vybraní hosté</span>
+  <span>Prosecco na přivítání</span>
+</div>
+
+<!-- JANIN DOPIS -->
+<section class="letter">
+  <div class="letter-inner reveal">
+    <div class="letter-avatar"><img src="jana-stepanikova.jpg" alt="Jana Štěpaníková"></div>
+    <div class="letter-body">
+      <span class="label">Proč tento večer existuje</span>
+      <p class="letter-quote">„Věřím, že ti praví lidé ve správný moment dokážou změnit váš život. Proto pečlivě vybírám každého hosta."</p>
+      <p class="letter-text">
+        Většina networkingových akcí vás hodí do místnosti s padesáti cizími lidmi a doufá, že se něco stane. Já to dělám jinak - sestavuji večer tak, aby v místnosti byli lidé, kteří si mají co říct. Lidé, kteří stojí za to.<br><br>
+        Každý účastník prochází výběrem. Ne proto, abychom byli exkluzivní - ale proto, že dobrý rozhovor potřebuje správnou společnost.
       </p>
-      <ul class="deeptalk-points">
-        <li>Jak se představit tak, aby si vás lidé zapamatovali</li>
-        <li>Jak klást otázky které otevírají, ne uzavírají</li>
-        <li>Jak naslouchat tak, aby druhý chtěl mluvit dál</li>
-        <li>Jak přirozeně navázat kontakt — bez trapnosti</li>
-      </ul>
+      <div class="letter-sign">Jana Štěpaníková</div>
+      <div class="letter-role">Hostitelka &amp; autorka konceptu TVŮJ ČLOVĚK</div>
     </div>
-    <div class="deeptalk-visual">
-      <p class="deeptalk-quote">Dobré setkání není otázka náhody. Je otázka konceptu, atmosféry a správně uchopené chvíle.</p>
+  </div>
+</section>
+
+<!-- FORMÁT VEČERA -->
+<section class="format">
+  <div class="format-header reveal">
+    <span class="label">Co vás čeká</span>
+    <h2 class="format-title">Tři pilíře večera</h2>
+  </div>
+  <div class="format-cards">
+    <div class="format-card format-card--navy reveal">
+      <div class="format-card-num">01</div>
+      <div class="format-card-title">Deep Talk Workshop</div>
+      <p class="format-card-desc">Naučíte se komunikovat tak, aby vás lidé chtěli poslouchat a pamatovali si vás. Praktická cvičení - jak se představit, jak klást otázky, jak naslouchat.</p>
+    </div>
+    <div class="format-card format-card--gold reveal reveal-d1">
+      <div class="format-card-num">02</div>
+      <div class="format-card-title">Skutečné rozhovory</div>
+      <p class="format-card-desc">Čas na opravdové propojení - ne vizitky, ne small talk. Řízené i volné setkávání v prostředí, které tomu dává smysl.</p>
+    </div>
+    <div class="format-card format-card--pale reveal reveal-d2">
+      <div class="format-card-num">03</div>
+      <div class="format-card-title">Raut &amp; atmosféra</div>
+      <p class="format-card-desc">Prosecco na přivítání, raut po celý večer, kvalitní víno. Přijdete a budete se cítit dobře - od první minuty.</p>
     </div>
   </div>
 </section>
 
 <!-- PROGRAM -->
-<section class="program">
-  <div class="program-header">
-    <span class="section-label" style="color: var(--green);">Program večera</span>
+<section class="program" id="program-section">
+  <div class="program-header reveal">
+    <span class="label">Program večera</span>
     <h2 class="program-title">Jak večer proběhne</h2>
   </div>
   <div class="program-timeline">
-    <div class="program-item">
+    <div class="program-item reveal">
       <div class="program-time">17:00</div>
       <div>
         <div class="program-name">Příchod &amp; welcome</div>
         <p class="program-detail">Registrace, welcome drink, catering, první setkávání</p>
       </div>
     </div>
-    <div class="program-item">
+    <div class="program-item reveal">
       <div class="program-time">17:30</div>
       <div>
         <div class="program-name">Představení &amp; kolo otázek</div>
-        <p class="program-detail">Každý má 90 vteřin — kdo jste, čím žijete, co hledáte</p>
+        <p class="program-detail">Každý má 90 vteřin - kdo jste, čím žijete, co hledáte</p>
       </div>
     </div>
-    <div class="program-item">
+    <div class="program-item reveal">
       <div class="program-time">18:15</div>
       <div>
         <div class="program-name">Deep Talk Workshop</div>
-        <p class="program-detail">Praktická cvičení — umění kontaktu a komunikace která propojuje</p>
+        <p class="program-detail">Praktická cvičení komunikace. Když za nás mluví AI, umění vést skutečný rozhovor je tou nejcennější dovedností.</p>
       </div>
     </div>
-    <div class="program-item">
+    <div class="program-item reveal">
       <div class="program-time">19:00</div>
       <div>
         <div class="program-name">Volné setkávání</div>
-        <p class="program-detail">Catering, hudba, rozhovory — čas na propojení bez moderátora</p>
+        <p class="program-detail">Catering, hudba, rozhovory - čas na propojení bez moderátora</p>
       </div>
     </div>
-    <div class="program-item">
-      <div class="program-time">20:30</div>
+    <div class="program-item reveal">
+      <div class="program-time">21:30</div>
       <div>
         <div class="program-name">Závěr &amp; společná fotka</div>
         <p class="program-detail">Zpětná vazba, info o dalších akcích, rozloučení</p>
@@ -821,53 +2419,53 @@
 
 <!-- LIDÉ -->
 <section class="people">
-  <div class="people-header">
-    <span class="section-label" style="color: var(--gold);">Kdo za večerem stojí</span>
+  <div class="people-header reveal">
+    <span class="label">Kdo za večerem stojí</span>
     <h2 class="people-title">Váš večer povedou</h2>
   </div>
   <div class="people-grid">
-    <div class="person-card">
+    <div class="person reveal">
       <div class="person-avatar"><img src="jana-stepanikova.jpg" alt="Mgr. Jana Štěpaníková, DiS."></div>
       <span class="person-role">Hostitelka &amp; autorka konceptu</span>
       <div class="person-name">Mgr. Jana Štěpaníková, DiS.</div>
       <p class="person-desc">Fyzioterapeutka, koučka a mentorka. Autorka metody WALANCE. Organizuje a moderuje celý večer.</p>
     </div>
-    <div class="person-card">
+    <div class="person reveal reveal-d1">
       <div class="person-avatar"><img src="jan-krkoska.jpg" alt="Jan Krkoška, MBA"></div>
       <span class="person-role">Partner &amp; hostitel místa</span>
       <div class="person-name">Jan Krkoška, MBA</div>
       <p class="person-desc">Úspěšný podnikatel a ředitel Centra následné péče Ostrava. Otevírá večer a vítá hosty ve svých prostorách.</p>
     </div>
-    <div class="person-card">
+    <div class="person reveal reveal-d2">
       <div class="person-avatar"><img src="jan-tobolik.jpg" alt="Ing. Jan Tobolík"></div>
       <span class="person-role">Host večera</span>
       <div class="person-name">Ing. Jan Tobolík</div>
-      <p class="person-desc">AI konzultant a školitel s 1 000+ hodinami v AI. CEO Sensio.cz. Ukazuje, jak technologie mění byznys — a proč přesto potřebujeme skutečný lidský kontakt.</p>
+      <p class="person-desc">AI konzultant a školitel s 1 000+ hodinami v AI. CEO Sensio.cz. Ukazuje, jak technologie mění byznys - a proč přesto potřebujeme skutečný lidský kontakt.</p>
     </div>
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
+<!-- OHLASY -->
 <section class="proof">
   <div class="proof-inner">
-    <span class="section-label" style="color: var(--green);">Co říkají účastníci</span>
-    <h2 class="proof-title">Ohlasy z našich akcí</h2>
+    <span class="label">Co říkají účastníci</span>
+    <h2 class="proof-title reveal">Ohlasy z našich akcí</h2>
     <div class="proof-grid">
-      <div class="proof-card">
+      <div class="proof-card reveal">
         <p class="proof-text">Přišla jsem skeptická, odcházela s pocitem, že jsem konečně potkala lidi, se kterými si rozumím. Žádný povrchní small talk.</p>
         <div class="proof-author">
           <strong>Marketingová ředitelka, 38 let</strong>
           Účastnice NetWalking akce
         </div>
       </div>
-      <div class="proof-card">
-        <p class="proof-text">Za jeden večer jsem navázal víc smysluplných kontaktů než za rok na běžných networkingových akcích. Kurátorovaná skupina dělá obrovský rozdíl.</p>
+      <div class="proof-card reveal reveal-d1">
+        <p class="proof-text">Za jeden večer jsem navázal víc smysluplných kontaktů než za rok na běžných networkingových akcích.</p>
         <div class="proof-author">
           <strong>IT podnikatel, 44 let</strong>
           Účastník NetWalking akce
         </div>
       </div>
-      <div class="proof-card">
+      <div class="proof-card reveal reveal-d2">
         <p class="proof-text">Workshop mě naučil, jak se představit tak, aby si mě lidé pamatovali. Už to samo o sobě stálo za tu cenu.</p>
         <div class="proof-author">
           <strong>Architektka, 35 let</strong>
@@ -880,111 +2478,262 @@
 
 <!-- VSTUPNÉ -->
 <section class="ticket" id="registrace">
-  <span class="section-label" style="color: rgba(255,255,255,0.5);">Vstupné</span>
-  <div class="ticket-price">1 700 <span class="ticket-currency">Kč</span></div>
-  <p class="ticket-note">Cena bez DPH · Platba po schválení přihlášky</p>
-  <p class="ticket-context">Workshop, raut s nápoji, kurátorovaná společnost a celý večerní program — za méně, než stojí běžná večeře pro dva.</p>
-  <div class="ticket-includes">
-    <span class="ticket-include">Workshop Deep Talk</span>
-    <span class="ticket-include">Raut &amp; nápoje celý večer</span>
-    <span class="ticket-include">Kurátorovaná skupina max. 50 lidí</span>
-    <span class="ticket-include">Celý večerní program</span>
+  <div class="reveal">
+    <span class="label">Vstupné</span>
+    <div class="ticket-price">1 700 <span class="ticket-currency">Kč</span></div>
+    <p class="ticket-note">Cena bez DPH · Platba po schválení přihlášky</p>
+    <p class="ticket-context">Workshop, raut s nápoji, vybraná společnost a celý večerní program - za méně, než stojí běžná večeře pro dva.</p>
+    <div class="ticket-includes">
+      <span class="ticket-include">Workshop Deep Talk</span>
+      <span class="ticket-include">Raut &amp; nápoje celý večer</span>
+      <span class="ticket-include">Vybraná skupina max. 50 lidí</span>
+      <span class="ticket-include">Celý večerní program</span>
+    </div>
+    <a href="#formular" class="btn-white">Chci být u toho →</a>
+    <p class="ticket-capacity">Kapacita 50 míst · Každý účastník prochází výběrem</p>
   </div>
-  <a href="#formular" class="btn-primary" style="background: var(--white); color: var(--dark);">Rezervovat místo →</a>
-  <p class="ticket-capacity">Kapacita je omezena na 50 míst · Každý účastník prochází výběrem</p>
 </section>
 
-<!-- PŘIHLÁŠKA -->
+<!-- PŘIHLÁŠKA -3 KROKY -->
 <section class="form-section" id="formular">
   <div class="form-inner">
-    <span class="section-label" style="color: var(--green);">Přihláška</span>
-    <h2 class="form-title">Chci se zúčastnit</h2>
-    <p class="form-desc">Vyplňte přihlášku a my se vám ozveme. Každý účastník prochází výběrem — záleží nám na složení skupiny.</p>
+    <span class="label">Přihláška</span>
+    <h2 class="form-title reveal">Chci být u toho</h2>
+    <p class="form-desc reveal">Každý host prochází výběrem - záleží mi na složení skupiny. Vyplňte přihlášku a ozvu se vám do 48 hodin.</p>
 
-    <form id="registration-form" class="reg-form">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="jmeno">Jméno *</label>
-          <input type="text" id="jmeno" name="jmeno" required>
+    <!-- Step indicators -->
+    <div class="steps reveal">
+      <div class="step-indicator active" id="step-ind-1">1. O vás</div>
+      <div class="step-indicator" id="step-ind-2">2. Co vás čeká</div>
+      <div class="step-indicator" id="step-ind-3">3. Potvrzení</div>
+    </div>
+
+    <form id="registration-form" class="reg-form reveal">
+      <!-- STEP 1: O vás -->
+      <div class="form-step active" id="step-1">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="jmeno">Jméno *</label>
+            <input type="text" id="jmeno" name="jmeno" required>
+          </div>
+          <div class="form-group">
+            <label for="prijmeni">Příjmení *</label>
+            <input type="text" id="prijmeni" name="prijmeni" required>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="prijmeni">Příjmení *</label>
-          <input type="text" id="prijmeni" name="prijmeni" required>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="telefon">Telefon *</label>
+            <input type="tel" id="telefon" name="telefon" required>
+          </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" required>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="mesto">Město bydliště *</label>
+            <input type="text" id="mesto" name="mesto" required>
+          </div>
+          <div class="form-group">
+            <label for="vek">Věk *</label>
+            <input type="number" id="vek" name="vek" min="18" max="99" required>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="telefon">Telefon *</label>
-          <input type="tel" id="telefon" name="telefon" required>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pohlavi">Pohlaví *</label>
+            <select id="pohlavi" name="pohlavi" required>
+              <option value="">Vyberte…</option>
+              <option value="Žena">Žena</option>
+              <option value="Muž">Muž</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="povolani">Povolání *</label>
+            <input type="text" id="povolani" name="povolani" required>
+          </div>
         </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="mesto">Město bydliště *</label>
-          <input type="text" id="mesto" name="mesto" required>
-        </div>
-        <div class="form-group">
-          <label for="vek">Věk *</label>
-          <input type="number" id="vek" name="vek" min="18" max="99" required>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="pohlavi">Pohlaví *</label>
-          <select id="pohlavi" name="pohlavi" required>
-            <option value="">Vyberte…</option>
-            <option value="Žena">Žena</option>
-            <option value="Muž">Muž</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="povolani">Povolání *</label>
-          <input type="text" id="povolani" name="povolani" required>
-        </div>
-      </div>
-      <div class="form-group full">
-        <label for="cohleda">Co hledáte? (byznys parťák, přátelství, partner/ka na výlety…) *</label>
-        <textarea id="cohleda" name="cohleda" rows="3" required></textarea>
-      </div>
-      <div class="form-group full">
-        <label for="konicky">Vaše koníčky a zájmy *</label>
-        <textarea id="konicky" name="konicky" rows="3" required></textarea>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label for="linkedin">LinkedIn profil</label>
-          <input type="text" id="linkedin" name="linkedin" placeholder="jantobolik">
-        </div>
-        <div class="form-group">
-          <label for="instagram">Instagram</label>
-          <input type="text" id="instagram" name="instagram" placeholder="@vase_jmeno">
+        <div class="form-nav">
+          <button type="button" class="btn-navy" onclick="goToStep(2)">Pokračovat →</button>
         </div>
       </div>
-      <div class="form-group full">
-        <label for="dieta">Dietní omezení (alergie, vegetarián…)</label>
-        <input type="text" id="dieta" name="dieta">
+
+      <!-- STEP 2: Co vás čeká -->
+      <div class="form-step" id="step-2">
+        <div class="expect-box">
+          <h3>Co vás na večeru čeká</h3>
+          <ul class="expect-list">
+            <li>Deep Talk Workshop - praktická cvičení komunikace</li>
+            <li>Představení všech hostů -90 vteřin na každého</li>
+            <li>Volné setkávání s rautem a nápoji</li>
+            <li>Pečlivě vybraná skupina max. 50 lidí</li>
+            <li>Každého hosta vybírám osobně - záleží mi na pestré směsi profesí a osobností</li>
+          </ul>
+        </div>
+        <div class="form-group full">
+          <label for="cohleda">Co hledáte? (byznys parťák, přátelství, partner/ka na výlety…) *</label>
+          <textarea id="cohleda" name="cohleda" rows="3" required></textarea>
+        </div>
+        <div class="form-group full">
+          <label for="konicky">Vaše koníčky a zájmy *</label>
+          <textarea id="konicky" name="konicky" rows="3" required></textarea>
+        </div>
+        <div class="form-group full">
+          <label for="tema">O čem byste rádi tento večer mluvili?</label>
+          <input type="text" id="tema" name="tema" placeholder="Např. umělá inteligence, cestování, podnikání...">
+        </div>
+        <div class="form-nav">
+          <button type="button" class="btn-back" onclick="goToStep(1)">← Zpět</button>
+          <button type="button" class="btn-navy" onclick="goToStep(3)">Pokračovat →</button>
+        </div>
       </div>
-      <div class="form-group full" style="margin-top: 8px;">
-        <label class="gdpr-label">
-          <input type="checkbox" id="gdpr" name="gdpr" required>
-          <span>Souhlasím se zpracováním osobních údajů společností NetWalking Pro s.r.o. za účelem organizace akce TVŮJ ČLOVĚK. Údaje budou použity výhradně pro komunikaci ohledně akce a nebudou předány třetím stranám. Souhlas lze kdykoli odvolat na jana@walance.cz. *</span>
-        </label>
+
+      <!-- STEP 3: Potvrzení -->
+      <div class="form-step" id="step-3">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="linkedin">LinkedIn profil</label>
+            <input type="text" id="linkedin" name="linkedin" placeholder="vasejmeno">
+          </div>
+          <div class="form-group">
+            <label for="instagram">Instagram</label>
+            <input type="text" id="instagram" name="instagram" placeholder="@vase_jmeno">
+          </div>
+        </div>
+        <div class="form-group full">
+          <label for="dieta">Dietní omezení (alergie, vegetarián…)</label>
+          <input type="text" id="dieta" name="dieta">
+        </div>
+        <div class="form-group full">
+          <label for="doporuceni">Jak jste se o večeru dozvěděli?</label>
+          <input type="text" id="doporuceni" name="doporuceni" placeholder="Nepovinné">
+        </div>
+        <div class="form-group full" style="margin-top: 8px;">
+          <label class="gdpr-label">
+            <input type="checkbox" id="gdpr" name="gdpr" required>
+            <span>Souhlasím se zpracováním osobních údajů společností NetWalking Pro s.r.o. za účelem organizace akce TVŮJ ČLOVĚK. Údaje budou použity výhradně pro komunikaci ohledně akce a nebudou předány třetím stranám. Souhlas lze kdykoli odvolat na jana@walance.cz. *</span>
+          </label>
+        </div>
+        <div class="form-nav">
+          <button type="button" class="btn-back" onclick="goToStep(2)">← Zpět</button>
+          <button type="submit" class="btn-gold btn-submit">Odeslat přihlášku →</button>
+        </div>
+        <div id="form-message" class="form-message"></div>
       </div>
-      <button type="submit" class="btn-primary btn-submit">Odeslat přihlášku →</button>
-      <div id="form-message" class="form-message"></div>
     </form>
+
+    <!-- MAILMAN ANIMATION (inline, replaces form) -->
+    <div class="mailman-overlay" id="mailman-overlay">
+      <div class="mailman-status" id="anim-status">✉️ Doručujeme vaši přihlášku...</div>
+      <!-- SCENE 1: Mailman -->
+      <div class="mailman-scene" id="scene-1">
+        <div style="position:absolute;top:16px;left:20px;z-index:5;font-family:var(--serif);font-size:1rem;color:var(--navy);background:rgba(255,255,255,0.85);padding:8px 16px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">✉️ Odesíláme přihlášku...</div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="ground-path"></div>
+        <div class="path"></div>
+        <div class="post-office">
+          <div class="po-building">
+            <div class="po-roof"></div>
+            <div class="po-door"></div>
+            <div class="po-window"></div>
+            <div class="po-window"></div>
+          </div>
+        </div>
+        <div class="mailbox">
+          <div class="mailbox-box"><div class="mailbox-slot"></div></div>
+          <div class="mailbox-post"></div>
+        </div>
+        <!-- queue removed -->
+        <div class="dog">
+          <div class="dog-body">
+            <div class="dog-tail"></div>
+            <div class="dog-torso"></div>
+            <div class="dog-head">
+              <div class="dog-ear"></div>
+              <div class="dog-eye"></div>
+              <div class="dog-nose"></div>
+              <div class="dog-tongue"></div>
+            </div>
+            <div class="dog-leg dog-leg-fl"></div>
+            <div class="dog-leg dog-leg-fr"></div>
+            <div class="dog-leg dog-leg-bl"></div>
+            <div class="dog-leg dog-leg-br"></div>
+          </div>
+        </div>
+        <div class="letter-fly"></div>
+        <div class="mailman">
+          <div class="mailman-body">
+            <div class="mm-hat"><div class="mm-hat-badge"></div></div>
+            <div class="mm-head">
+              <div class="mm-eye mm-eye-l"></div>
+              <div class="mm-eye mm-eye-r"></div>
+            </div>
+            <div class="mm-bag"></div>
+            <div class="mm-torso">
+              <div class="mm-button"></div>
+              <div class="mm-button"></div>
+              <div class="mm-belt"></div>
+            </div>
+            <div class="mm-arm"><div class="mm-letter"></div></div>
+            <div class="mm-leg mm-leg-l"><div class="mm-shoe"></div></div>
+            <div class="mm-leg mm-leg-r"><div class="mm-shoe"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 2: Jana's desk -->
+      <div class="scene-2 stamped" id="scene-2">
+        <div class="desk">
+          <div class="desk-letter">
+            <div class="desk-letter-lines">
+              <div></div><div></div><div></div>
+            </div>
+          </div>
+          <div class="desk-mug"></div>
+          <div class="desk-plant">
+            <div class="desk-plant-leaf"></div>
+            <div class="desk-plant-leaf"></div>
+            <div class="desk-plant-leaf"></div>
+            <div class="desk-plant-pot"></div>
+          </div>
+        </div>
+        <div class="jana">
+          <div class="jana-hair"></div>
+          <div class="jana-head">
+            <div class="jana-eye jana-eye-l"></div>
+            <div class="jana-eye jana-eye-r"></div>
+            <div class="jana-necklace"></div>
+          </div>
+          <div class="jana-torso">
+            <div class="jana-arm-l"></div>
+            <div class="jana-arm-r"></div>
+          </div>
+        </div>
+        <!-- Notice board on wall -->
+        <div class="notice-board">
+          <div class="notice-line-1" id="notice-1">✅ Přihláška přijata!</div>
+          <div class="notice-line-2" id="notice-2">Jana se vám ozve<br>e-mailem do 48 hodin.</div>
+        </div>
+
+        <!-- Stamp on letter -->
+        <div class="stamp">
+          <div class="stamp-box">
+            <span class="stamp-text">Přijato <span class="stamp-check">✓</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- MÍSTO KONÁNÍ -->
 <section class="venue">
   <div class="venue-inner">
-    <div>
-      <span class="eyebrow" style="color: var(--green); display: block; margin-bottom: 24px;">Místo konání</span>
+    <div class="reveal">
+      <span class="label">Místo konání</span>
       <h2 class="venue-title">Restaurant Café<br>Ostrava-Poruba</h2>
       <p class="venue-address">
         <strong>Centrum následné péče Ostrava</strong>
@@ -993,7 +2742,7 @@
         Parkování přímo před budovou.
       </p>
     </div>
-    <div class="venue-map">
+    <div class="venue-map reveal reveal-d1">
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2570.5!2d18.1656!3d49.8284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4713e34b3f3c7a7d%3A0x5c3e5b3f3c7a7d!2sElzy+Trioletov%C3%A9+2%2C+708+00+Ostrava-Poruba!5e0!3m2!1scs!2scz!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
@@ -1013,31 +2762,61 @@
     Dotazy a přihlášky: <a href="mailto:jana@walance.cz">jana@walance.cz</a> · <a href="tel:+420601584901">+420 601 584 901</a>
   </div>
   <div class="footer-legal">NetWalking Pro s.r.o. · IČO: 22107321 · Na Hrázi 1139/13, 750 02 Přerov</div>
-  <div class="footer-version">%%VERSION%%</div>
+  <div class="footer-version">V6</div>
 </footer>
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta">
-  <a href="#formular">Rezervovat místo →</a>
+  <a href="#formular">Chci být u toho →</a>
 </div>
 
 <script>
-// Persist form values in localStorage
+// Scroll reveal
+var revealObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+// 3-step form
+var currentStep = 1;
+
+function goToStep(n) {
+  // Validate current step before advancing
+  if (n > currentStep) {
+    var currentFields = document.querySelectorAll('#step-' + currentStep + ' [required]');
+    var valid = true;
+    currentFields.forEach(function(f) {
+      if (!f.value.trim()) { f.style.borderColor = '#c0392b'; valid = false; }
+      else { f.style.borderColor = ''; }
+    });
+    if (!valid) return;
+  }
+
+  document.querySelectorAll('.form-step').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('step-' + n).classList.add('active');
+
+  for (var i = 1; i <= 3; i++) {
+    var ind = document.getElementById('step-ind-' + i);
+    ind.classList.remove('active', 'done');
+    if (i < n) ind.classList.add('done');
+    if (i === n) ind.classList.add('active');
+  }
+
+  currentStep = n;
+  document.getElementById('formular').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Persist form
 var form = document.getElementById('registration-form');
-var fields = ['jmeno','prijmeni','email','telefon','mesto','vek','pohlavi','povolani','cohleda','konicky','linkedin','instagram','dieta'];
+var fields = ['jmeno','prijmeni','email','telefon','mesto','vek','pohlavi','povolani','cohleda','konicky','tema','linkedin','instagram','dieta','doporuceni'];
 
 fields.forEach(function(name) {
   var el = form.elements[name];
+  if (!el) return;
   var saved = localStorage.getItem('form_' + name);
-  if (saved && el) el.value = saved;
-  if (el) el.addEventListener('input', function() {
-    localStorage.setItem('form_' + name, el.value);
-  });
-  if (el && el.tagName === 'SELECT') {
-    el.addEventListener('change', function() {
-      localStorage.setItem('form_' + name, el.value);
-    });
-  }
+  if (saved) el.value = saved;
+  el.addEventListener('input', function() { localStorage.setItem('form_' + name, el.value); });
+  if (el.tagName === 'SELECT') el.addEventListener('change', function() { localStorage.setItem('form_' + name, el.value); });
 });
 
 function clearFormStorage() {
@@ -1047,16 +2826,12 @@ function clearFormStorage() {
 function normalizeLinkedIn(val) {
   if (!val) return '';
   val = val.replace(/^https?:\/\//, '').replace(/^www\./, '');
-  if (val.startsWith('linkedin.com/in/')) {
-    return 'https://www.' + val.replace(/\/+$/, '');
-  }
-  if (!val.includes('/')) {
-    return 'https://www.linkedin.com/in/' + val.replace(/^@/, '');
-  }
+  if (val.startsWith('linkedin.com/in/')) return 'https://www.' + val.replace(/\/+$/, '');
+  if (!val.includes('/')) return 'https://www.linkedin.com/in/' + val.replace(/^@/, '');
   return val;
 }
 
-document.getElementById('registration-form').addEventListener('submit', async function(e) {
+form.addEventListener('submit', async function(e) {
   e.preventDefault();
   var btn = this.querySelector('.btn-submit');
   var msg = document.getElementById('form-message');
@@ -1076,39 +2851,83 @@ document.getElementById('registration-form').addEventListener('submit', async fu
     povolani: this.povolani.value.trim(),
     cohleda: this.cohleda.value.trim(),
     konicky: this.konicky.value.trim(),
+    tema: (this.tema ? this.tema.value.trim() : ''),
     linkedin: normalizeLinkedIn(this.linkedin.value.trim()),
     instagram: this.instagram.value.trim(),
     dieta: this.dieta.value.trim(),
+    doporuceni: (this.doporuceni ? this.doporuceni.value.trim() : ''),
     gdpr: this.gdpr.checked ? '✓ Souhlas' : ''
   };
 
-  try {
-    var res = await fetch('https://script.google.com/macros/s/AKfycbw8XvtUXAoIW8RllLEq1BiCRudpGE0OFEYB7qGVypmLimsfChQgiW2iWbYm5SQoOiCXGg/exec', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
+  // Fire and forget -send data in background
+  fetch('https://script.google.com/macros/s/AKfycbw8XvtUXAoIW8RllLEq1BiCRudpGE0OFEYB7qGVypmLimsfChQgiW2iWbYm5SQoOiCXGg/exec', {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(function() {}); // silently ignore errors
+
+  var name = data.jmeno;
+
+  // Hide form, show animation inline immediately
+  document.getElementById('registration-form').style.display = 'none';
+  document.querySelector('.steps').style.display = 'none';
+  var formLabel = document.querySelector('.form-section .label');
+  if (formLabel) formLabel.style.display = 'none';
+  document.querySelector('.form-title').style.display = 'none';
+  document.querySelector('.form-desc').style.display = 'none';
+  document.getElementById('mailman-overlay').classList.add('visible');
+  document.getElementById('formular').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // After mailman delivers, switch to scene 2
+  setTimeout(function() {
+    document.getElementById('scene-1').style.display = 'none';
+    // Personalize notice board with name
+    document.getElementById('notice-1').textContent = '✅ Přijato, ' + name + '!';
+    document.getElementById('scene-2').classList.add('visible');
+  }, 3000);
+
+  form.reset();
+  clearFormStorage();
+});
+
+// Secret: Ctrl+Shift+T fills current step with test data
+document.addEventListener('keydown', function(e) {
+  if (e.key === '~') {
+    e.preventDefault();
+    var step = document.querySelector('.form-step.active');
+    if (!step) return;
+    var testData = {
+      jmeno: 'Jan', prijmeni: 'Novák', email: 'jan.novak@test.cz',
+      telefon: '+420 777 888 999', mesto: 'Ostrava', vek: '38',
+      pohlavi: 'Muž', povolani: 'IT konzultant',
+      cohleda: 'Byznys parťák, inspirativní lidi na společné projekty',
+      konicky: 'Běhání, AI, cestování, vinařství',
+      tema: 'Umělá inteligence v každodenním životě',
+      linkedin: 'jannovak', instagram: '@jan_novak',
+      dieta: '', doporuceni: 'Jana Štěpaníková'
+    };
+    step.querySelectorAll('input, select, textarea').forEach(function(el) {
+      if (testData[el.name] !== undefined) {
+        el.value = testData[el.name];
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      }
     });
-    msg.textContent = 'Děkujeme za přihlášku! Ozveme se vám e-mailem.';
-    msg.className = 'form-message success';
-    this.reset();
-    clearFormStorage();
-  } catch (err) {
-    msg.textContent = 'Omlouváme se, něco se pokazilo. Zkuste to znovu nebo nám napište na jana@walance.cz.';
-    msg.className = 'form-message error';
+    var gdpr = step.querySelector('#gdpr');
+    if (gdpr) gdpr.checked = true;
+    console.log('%c🧪 Test data filled (step ' + currentStep + ')', 'color: #C4A35A; font-weight: bold;');
   }
-  btn.disabled = false;
-  btn.innerHTML = 'Odeslat přihlášku →';
 });
 
 // Hide sticky CTA when form visible
 var stickyCta = document.querySelector('.sticky-cta');
-var formSection = document.getElementById('formular');
-if (stickyCta && formSection) {
-  var observer = new IntersectionObserver(function(entries) {
+var formEl = document.getElementById('formular');
+if (stickyCta && formEl) {
+  var formObs = new IntersectionObserver(function(entries) {
     stickyCta.style.display = entries[0].isIntersecting ? 'none' : '';
   }, { threshold: 0.1 });
-  observer.observe(formSection);
+  formObs.observe(formEl);
 }
 </script>
 </body>
